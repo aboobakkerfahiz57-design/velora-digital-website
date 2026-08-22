@@ -1,238 +1,261 @@
-/* =========================================================
-   VELORA DIGITAL — MAIN JAVASCRIPT
-   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("DOMContentLoaded", function () {
+  /* ===============================
+     SMOOTH NAVIGATION
+  =============================== */
 
-  /* =======================================================
-     PROJECT DEMO MODAL
-     ======================================================= */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
 
-  const modal = document.getElementById("demoModal");
-  const closeModal = document.getElementById("closeModal");
-  const demoTitle = document.getElementById("demoTitle");
-  const demoDescription = document.getElementById("demoDescription");
+      if (!targetId || targetId === "#") return;
 
-  const demoButtons = document.querySelectorAll(".demo-button");
+      const target = document.querySelector(targetId);
+
+      if (target) {
+        e.preventDefault();
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  });
 
 
-  const projects = {
+  /* ===============================
+     MOBILE MENU
+  =============================== */
+
+  const menuButton = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (menuButton && navLinks) {
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  }
+
+
+  /* ===============================
+     DEMO PROJECT DATA
+  =============================== */
+
+  const demos = {
 
     jewels: {
       title: "THE JEWELS",
+      category: "Premium Jewellery Website",
       description:
-        "A premium jewellery digital experience concept designed to showcase collections, build trust and create a luxury online shopping experience."
+        "A premium jewellery website concept designed to showcase collections, build customer trust and create a luxury online shopping experience.",
+      image: "jewels-demo.jpg"
     },
 
     tbd: {
       title: "TBD GROUP",
+      category: "Corporate Business Website",
       description:
-        "A modern business and real-estate digital experience concept designed to present the company, services, properties and business enquiries professionally."
+        "A premium corporate website concept for TBD GROUP, presenting its business divisions, services, projects and professional brand identity.",
+      image: "tbd-demo.jpg"
     },
 
     business: {
       title: "BUSINESS LAUNCH",
+      category: "Business Website",
       description:
-        "A modern business website concept created to give a growing business a professional digital presence and help customers discover its services."
+        "A modern business website concept created to help a new business establish a strong digital presence and generate enquiries.",
+      image: "business-demo.jpg"
     }
 
   };
 
 
-  demoButtons.forEach(function (button) {
+  /* ===============================
+     CREATE DEMO MODAL
+  =============================== */
 
-    button.addEventListener("click", function () {
+  const modal = document.createElement("div");
 
-      const projectName = button.dataset.demo;
-      const project = projects[projectName];
+  modal.className = "demo-modal";
 
-      if (!project) {
-        return;
-      }
+  modal.innerHTML = `
+    <div class="demo-modal-overlay"></div>
 
-      demoTitle.textContent = project.title;
-      demoDescription.textContent = project.description;
+    <div class="demo-modal-box">
 
-      modal.classList.add("active");
+      <button class="demo-close" aria-label="Close">
+        &times;
+      </button>
 
-      document.body.style.overflow = "hidden";
+      <div class="demo-image">
+        <img id="demoImage" src="" alt="Project Demo">
+      </div>
 
-    });
+      <div class="demo-content">
 
-  });
+        <span id="demoCategory"></span>
+
+        <h2 id="demoTitle"></h2>
+
+        <p id="demoDescription"></p>
+
+        <a href="#contact" class="primary-button demo-contact">
+          Build Something Similar →
+        </a>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
 
 
-  /* =======================================================
+  /* ===============================
+     OPEN DEMO
+  =============================== */
+
+  function openDemo(type) {
+
+    const demo = demos[type];
+
+    if (!demo) return;
+
+    const image = document.getElementById("demoImage");
+    const title = document.getElementById("demoTitle");
+    const category = document.getElementById("demoCategory");
+    const description = document.getElementById("demoDescription");
+
+    image.src = demo.image;
+    image.alt = demo.title + " project demo";
+
+    title.textContent = demo.title;
+    category.textContent = demo.category;
+    description.textContent = demo.description;
+
+    modal.classList.add("active");
+
+    document.body.classList.add("modal-open");
+  }
+
+
+  /* ===============================
      CLOSE DEMO
-     ======================================================= */
+  =============================== */
 
-  function closeProjectDemo() {
-
+  function closeDemo() {
     modal.classList.remove("active");
-
-    document.body.style.overflow = "";
-
+    document.body.classList.remove("modal-open");
   }
 
+  modal.querySelector(".demo-close").addEventListener("click", closeDemo);
 
-  if (closeModal) {
-
-    closeModal.addEventListener("click", closeProjectDemo);
-
-  }
+  modal.querySelector(".demo-modal-overlay").addEventListener("click", closeDemo);
 
 
-  /* Close when clicking outside the modal */
-
-  if (modal) {
-
-    modal.addEventListener("click", function (event) {
-
-      if (event.target === modal) {
-        closeProjectDemo();
-      }
-
-    });
-
-  }
-
-
-  /* Close with ESC */
-
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
-      closeProjectDemo();
+      closeDemo();
     }
 
   });
 
 
-  /* =======================================================
-     ENQUIRY FORM
-     ======================================================= */
+  /* ===============================
+     VIEW PROJECT BUTTONS
+  =============================== */
 
-  const enquiryForm = document.getElementById("enquiryForm");
-  const formMessage = document.getElementById("formMessage");
+  document.querySelectorAll("[data-demo]").forEach(button => {
 
-
-  if (enquiryForm) {
-
-    enquiryForm.addEventListener("submit", function (event) {
+    button.addEventListener("click", event => {
 
       event.preventDefault();
 
+      const demoType = button.getAttribute("data-demo");
 
-      const formData = new FormData(enquiryForm);
-
-      const name = formData.get("name");
-      const phone = formData.get("phone");
-      const email = formData.get("email");
-      const service = formData.get("service");
-      const message = formData.get("message");
-
-
-      /*
-        For now the enquiry is handled on the website.
-
-        Later, after the domain/email setup,
-        we will connect this form directly to
-        your WhatsApp and/or business email.
-      */
-
-
-      formMessage.textContent =
-        "Thank you, " +
-        name +
-        ". Your enquiry details are ready. We will connect this form to your direct WhatsApp/email system next.";
-
-
-      formMessage.style.display = "block";
-
-
-      console.log("VELORA DIGITAL ENQUIRY");
-
-      console.log({
-        name: name,
-        phone: phone,
-        email: email,
-        service: service,
-        message: message
-      });
-
-
-      enquiryForm.reset();
-
-    });
-
-  }
-
-
-  /* =======================================================
-     SMOOTH INTERNAL NAVIGATION
-     ======================================================= */
-
-  const internalLinks = document.querySelectorAll('a[href^="#"]');
-
-
-  internalLinks.forEach(function (link) {
-
-    link.addEventListener("click", function (event) {
-
-      const targetId = link.getAttribute("href");
-
-      if (!targetId || targetId === "#") {
-        return;
-      }
-
-
-      const target = document.querySelector(targetId);
-
-      if (!target) {
-        return;
-      }
-
-
-      event.preventDefault();
-
-
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      openDemo(demoType);
 
     });
 
   });
 
 
-  /* =======================================================
-     NAVBAR SCROLL EFFECT
-     ======================================================= */
+  /* ===============================
+     FALLBACK FOR VIEW PROJECT TEXT
+  =============================== */
 
-  const navbar = document.querySelector(".navbar");
+  document.querySelectorAll("a, button").forEach(element => {
 
+    const text = element.textContent.trim().toLowerCase();
 
-  window.addEventListener("scroll", function () {
+    if (text.includes("view project")) {
 
-    if (!navbar) {
-      return;
-    }
+      element.addEventListener("click", event => {
 
+        if (element.hasAttribute("data-demo")) return;
 
-    if (window.scrollY > 40) {
+        const card = element.closest("[data-project]");
 
-      navbar.style.background =
-        "rgba(5, 7, 18, 0.92)";
+        if (card) {
 
-    } else {
+          const projectType =
+            card.getAttribute("data-project");
 
-      navbar.style.background =
-        "rgba(5, 7, 18, 0.72)";
+          if (demos[projectType]) {
+
+            event.preventDefault();
+
+            openDemo(projectType);
+
+          }
+
+        }
+
+      });
 
     }
 
   });
 
+
+  /* ===============================
+     START A PROJECT
+  =============================== */
+
+  document.querySelectorAll("a, button").forEach(element => {
+
+    const text = element.textContent.trim().toLowerCase();
+
+    if (
+      text.includes("start a project") ||
+      text.includes("let's build") ||
+      text.includes("build something similar")
+    ) {
+
+      element.addEventListener("click", () => {
+
+        setTimeout(() => {
+          const contact = document.querySelector("#contact");
+
+          if (contact) {
+            contact.scrollIntoView({
+              behavior: "smooth"
+            });
+          }
+        }, 100);
+
+      });
+
+    }
+
+  });
 
 });
