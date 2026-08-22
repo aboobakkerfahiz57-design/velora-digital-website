@@ -1,30 +1,7 @@
-/* =========================================
+/* =========================================================
    VELORA DIGITAL
-   Premium Obsidian Purple Theme
-========================================= */
-
-:root {
-    --obsidian: #08080B;
-    --dark: #0F0F14;
-    --card: #15151C;
-
-    --purple: #7C5CFF;
-    --purple-light: #A78BFA;
-    --purple-dark: #5B3CF2;
-
-    --white: #F7F5FF;
-    --text: #D4D1DD;
-    --muted: #9995A6;
-
-    --border: rgba(167, 139, 250, 0.18);
-
-    --container: 1180px;
-}
-
-
-/* =========================================
-   RESET
-========================================= */
+   PREMIUM WEBSITE STYLES
+========================================================= */
 
 * {
     margin: 0;
@@ -37,1426 +14,836 @@ html {
 }
 
 body {
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    background: var(--obsidian);
-    color: var(--white);
-
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050507;
+    color: #ffffff;
     line-height: 1.6;
-
     overflow-x: hidden;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
-button,
-input,
-textarea,
-select {
-    font-family: inherit;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-
-/* =========================================
-   CONTAINER
-========================================= */
-
-.container {
-    width: min(92%, var(--container));
-    margin: auto;
+section {
+    scroll-margin-top: 90px;
 }
 
 
-/* =========================================
+/* =========================================================
    NAVIGATION
-========================================= */
+========================================================= */
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-
-    z-index: 1000;
-
-    background: rgba(8, 8, 11, 0.78);
-
-    backdrop-filter: blur(20px);
-
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-container {
-    height: 78px;
-
+    width: 100%;
+    height: 82px;
+    padding: 0 5.5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1000;
 
-    gap: 30px;
+    background: rgba(5, 5, 8, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-
-/* LOGO */
-
-.logo {
+.brand {
     display: flex;
     align-items: center;
-
-    gap: 11px;
-
-    font-weight: 800;
-    letter-spacing: 0.12em;
+    gap: 12px;
 }
 
-.logo-circle {
-    width: 43px;
-    height: 43px;
+.brand img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
 
-    border-radius: 50%;
-
-    border: 1px solid var(--purple);
-
+.brand-text {
     display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: var(--purple-light);
-
-    font-size: 19px;
-
-    box-shadow:
-        0 0 25px rgba(124, 92, 255, 0.25);
+    flex-direction: column;
 }
 
-.logo-text {
-    font-size: 14px;
+.brand-text strong {
+    font-size: 18px;
+    letter-spacing: 1.5px;
 }
 
-.logo-text span {
-    display: block;
-
+.brand-text span {
     font-size: 8px;
-
-    color: var(--purple-light);
-
-    letter-spacing: 0.38em;
-
+    letter-spacing: 1.4px;
+    color: #a7a7b3;
     margin-top: 2px;
 }
 
-
-/* NAV LINKS */
-
 .nav-links {
     display: flex;
-
-    gap: 27px;
-
-    color: #BEBBC8;
-
-    font-size: 13px;
+    align-items: center;
+    gap: 34px;
 }
 
 .nav-links a {
-    transition: 0.25s ease;
+    font-size: 14px;
+    color: #eeeeee;
+    transition: 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: white;
+    color: #9a5cff;
 }
 
-
-/* NAV BUTTON */
-
 .nav-button {
-    padding: 12px 19px;
-
-    border-radius: 9px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--purple-dark)
-        );
-
-    border: 1px solid var(--purple);
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 10px 30px rgba(124, 92, 255, 0.22);
-
-    transition: 0.25s ease;
+    padding: 13px 22px;
+    border: 1px solid #914cff;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.3s ease;
 }
 
 .nav-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 15px 40px rgba(124, 92, 255, 0.35);
+    background: #7c3aed;
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.35);
 }
 
 
-/* =========================================
+/* =========================================================
    HERO
-========================================= */
+========================================================= */
 
 .hero {
+    position: relative;
     min-height: 100vh;
-
-    padding:
-        150px
-        0
-        100px;
-
     display: flex;
     align-items: center;
 
-    position: relative;
+    background-image: url("velora-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
 
     background:
-
-        radial-gradient(
-            circle at 75% 45%,
-            rgba(124, 92, 255, 0.20),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(124, 92, 255, 0.08),
-            transparent 30%
+        linear-gradient(
+            90deg,
+            rgba(4, 4, 8, 0.96) 0%,
+            rgba(4, 4, 8, 0.84) 35%,
+            rgba(4, 4, 8, 0.35) 65%,
+            rgba(4, 4, 8, 0.55) 100%
         );
+
+    z-index: 1;
 }
 
-.hero-container {
-    display: grid;
+.hero-content {
+    position: relative;
+    z-index: 2;
 
-    grid-template-columns:
-        1.05fr
-        0.95fr;
+    width: 100%;
+    max-width: 650px;
 
-    align-items: center;
-
-    gap: 60px;
-}
-
-
-/* EYEBROW */
-
-.eyebrow,
-.section-label {
-    color: var(--purple-light);
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.22em;
-
-    text-transform: uppercase;
+    margin-left: 7%;
+    padding-top: 80px;
 }
 
 .eyebrow {
-    margin-bottom: 20px;
+    color: #a45cff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
 }
 
-
-/* HERO TITLE */
-
 .hero h1 {
-    font-size:
-        clamp(
-            52px,
-            8vw,
-            94px
-        );
-
-    line-height: 0.95;
-
-    letter-spacing: -0.055em;
-
-    max-width: 750px;
+    font-size: clamp(45px, 5.2vw, 78px);
+    line-height: 1.04;
+    letter-spacing: -2px;
+    font-weight: 700;
 }
 
 .hero h1 span {
-    color: var(--purple);
-
-    text-shadow:
-        0 0 35px
-        rgba(124, 92, 255, 0.30);
+    color: #914cff;
 }
-
-
-/* HERO DESCRIPTION */
 
 .hero-description {
-    max-width: 620px;
-
-    margin:
-        27px
-        0
-        32px;
-
-    color: var(--muted);
+    max-width: 550px;
+    margin-top: 28px;
 
     font-size: 17px;
+    color: #d0d0d8;
+    line-height: 1.8;
 }
-
-
-/* HERO BUTTONS */
 
 .hero-buttons {
     display: flex;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 35px;
 }
 
 .primary-button,
-.secondary-button,
-.price-button {
+.secondary-button {
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
+    gap: 13px;
 
-    padding:
-        13px
-        21px;
+    padding: 16px 25px;
+    border-radius: 8px;
 
-    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
 
-    font-size: 13px;
-
-    font-weight: 700;
-
-    transition: 0.25s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
 }
 
 .primary-button {
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--purple-dark)
-        );
-
-    border: 1px solid var(--purple);
-
+    background: linear-gradient(135deg, #7c3aed, #9b4dff);
     color: white;
-
-    box-shadow:
-        0 12px 35px
-        rgba(124, 92, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .primary-button:hover {
     transform: translateY(-3px);
-
-    box-shadow:
-        0 17px 45px
-        rgba(124, 92, 255, 0.38);
+    box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
 }
 
-.secondary-button,
-.price-button {
-    border: 1px solid rgba(255,255,255,0.18);
-
-    background: rgba(255,255,255,0.02);
-
-    color: #E5E2EB;
+.secondary-button {
+    border: 1px solid rgba(164, 92, 255, 0.65);
+    background: rgba(0, 0, 0, 0.25);
 }
 
-.secondary-button:hover,
-.price-button:hover {
-    border-color: var(--purple);
-
-    background:
-        rgba(124,92,255,0.08);
-
-    transform: translateY(-2px);
+.secondary-button:hover {
+    transform: translateY(-3px);
+    background: rgba(124, 58, 237, 0.12);
 }
 
-
-/* =========================================
-   HERO LOGO
-========================================= */
-
-.hero-visual {
-    position: relative;
-background-image: url("velora-hero.jpg");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-border-radius: 24px;
-overflow: hidden;
-    min-height: 450px;
-
+.hero-features {
     display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-.glow {
-    position: absolute;
-
-    width: 330px;
-    height: 330px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(124,92,255,0.25);
-
-    filter: blur(85px);
-}
-
-.hero-logo {
-    width: 330px;
-    height: 330px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(167,139,250,0.55);
-
-    background:
-        radial-gradient(
-            circle,
-            #19162A,
-            #0C0C10 68%
-        );
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    position: relative;
-
-    box-shadow:
-        0 0 80px
-        rgba(124,92,255,0.18);
-
-    animation:
-        floatingLogo 5s
-        ease-in-out
-        infinite;
-}
-
-.hero-v {
-    font-size: 110px;
-
-    line-height: 1;
-
-    font-weight: 800;
-
-    color: var(--purple-light);
-
-    text-shadow:
-        0 0 35px
-        rgba(124,92,255,0.45);
-}
-
-.hero-brand {
-    font-size: 21px;
-
-    letter-spacing: 0.2em;
-
-    font-weight: 800;
-}
-
-.hero-digital {
-    color: var(--purple-light);
-
-    font-size: 9px;
-
-    letter-spacing: 0.48em;
-
-    margin-top: 3px;
-}
-
-@keyframes floatingLogo {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-
-/* =========================================
-   SECTIONS
-========================================= */
-
-section {
-    padding:
-        110px
-        0;
-}
-
-section h2 {
-    max-width: 800px;
-
-    margin-top: 14px;
-
-    font-size:
-        clamp(
-            35px,
-            5vw,
-            58px
-        );
-
-    line-height: 1.05;
-
-    letter-spacing: -0.045em;
-}
-
-.section-description {
-    max-width: 680px;
-
-    margin-top: 18px;
-
-    color: var(--muted);
-
-    font-size: 15px;
-}
-
-
-/* =========================================
-   INTRO
-========================================= */
-
-.intro-section {
-    background:
-        linear-gradient(
-            180deg,
-            #0B0B0F,
-            #0E0E13
-        );
-}
-
-.intro-grid {
-    margin-top: 40px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 1px;
-
-    background: var(--border);
-}
-
-.intro-card {
-    padding: 30px;
-
-    background: #111116;
-}
-
-.intro-card h3 {
-    font-size: 21px;
-
-    margin-bottom: 8px;
-}
-
-.intro-card p {
-    color: var(--muted);
-
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 38px;
+    color: #bcbcc7;
     font-size: 13px;
 }
 
+.hero-features div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-/* =========================================
-   SERVICES
-========================================= */
+.hero-features span {
+    color: #a45cff;
+}
 
-.services-grid {
-    margin-top: 45px;
 
+/* =========================================================
+   TRUSTED
+========================================================= */
+
+.trusted {
+    padding: 65px 7%;
+    background: #07070b;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #858591;
+    margin-bottom: 32px;
+}
+
+.trusted-grid {
     display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    align-items: center;
+}
 
-    grid-template-columns:
-        repeat(3, 1fr);
+.trusted-grid div {
+    text-align: center;
+    color: #777783;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
 
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.starting-point,
+.digital-reality,
+.services,
+.work,
+.process,
+.contact {
+    padding: 120px 7%;
+}
+
+.section-heading {
+    max-width: 750px;
+    margin-bottom: 65px;
+}
+
+.section-heading h2,
+.contact-heading h2 {
+    font-size: clamp(35px, 4vw, 58px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.section-heading h2 span,
+.contact-heading h2 span {
+    color: #914cff;
+}
+
+.section-heading > p:last-child {
+    margin-top: 20px;
+    color: #a9a9b4;
+    max-width: 650px;
+}
+
+
+/* =========================================================
+   STARTING POINT
+========================================================= */
+
+.starting-point {
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(124, 58, 237, 0.15),
+            transparent 35%
+        ),
+        #08080d;
+}
+
+.price-card {
+    max-width: 620px;
+    padding: 50px;
+
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(157, 78, 255, 0.3);
+    border-radius: 20px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.price-label {
+    color: #9999a6;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.price {
+    font-size: 65px;
+    font-weight: 700;
+    margin: 8px 0 12px;
+}
+
+.price span {
+    color: #914cff;
+}
+
+.price-card h3 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.price-card p {
+    color: #aaaab6;
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   DIGITAL REALITY
+========================================================= */
+
+.digital-reality {
+    background: #050507;
+}
+
+.reality-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
 }
 
-.service-card {
-    min-height: 275px;
+.reality-card {
+    padding: 30px 24px;
+    min-height: 250px;
 
-    position: relative;
-
-    padding: 28px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #17171E,
-            #0F0F13
-        );
-
-    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.025);
 
     transition: 0.3s ease;
 }
 
-.service-card:hover {
+.reality-card:hover {
     transform: translateY(-7px);
-
-    border-color:
-        rgba(124,92,255,0.55);
-
-    box-shadow:
-        0 25px 60px
-        rgba(124,92,255,0.10);
+    border-color: rgba(145, 76, 255, 0.6);
 }
 
-.service-number {
-    position: absolute;
-
-    top: 20px;
-    right: 22px;
-
-    color:
-        rgba(167,139,250,0.45);
-
+.reality-card > span {
+    color: #914cff;
     font-size: 12px;
-
-    font-weight: 800;
 }
 
-.service-icon {
-    width: 52px;
-    height: 52px;
-
-    border-radius: 15px;
-
-    background:
-        rgba(124,92,255,0.10);
-
-    border:
-        1px solid
-        rgba(124,92,255,0.20);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: var(--purple-light);
-
+.reality-card h3 {
     font-size: 22px;
-
-    margin-bottom: 27px;
+    margin: 35px 0 14px;
 }
 
-.service-card h3 {
-    font-size: 20px;
-
-    margin-bottom: 10px;
-}
-
-.service-card p {
-    color: var(--muted);
-
-    font-size: 13px;
+.reality-card p {
+    color: #9999a5;
+    font-size: 14px;
 }
 
 
-/* =========================================
-   WORK
-========================================= */
+/* =========================================================
+   SERVICES
+========================================================= */
 
-.work-section {
-    background: #0D0D12;
-}
-
-.work-grid {
-    margin-top: 45px;
-
-    display: grid;
-
-    grid-template-columns:
-        1.15fr
-        0.85fr;
-
-    gap: 17px;
-}
-
-.project-card {
-    min-height: 270px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: 21px;
-
-    border:
-        1px solid
-        var(--border);
-
+.services {
     background:
-        linear-gradient(
-            135deg,
-            #11111A,
-            #211C3C,
-            #0B0B0F
-        );
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(124, 58, 237, 0.08),
+            transparent 30%
+        ),
+        #08080d;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.service-card {
+    position: relative;
+    padding: 35px;
+    min-height: 280px;
+
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.025);
 
     transition: 0.35s ease;
 }
 
-.project-large {
-    min-height: 420px;
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(145, 76, 255, 0.65);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-
-    border-color:
-        rgba(124,92,255,0.5);
+.service-number {
+    color: #914cff;
+    font-size: 12px;
 }
 
-.project-glow {
+.service-card h3 {
+    font-size: 23px;
+    margin-top: 45px;
+    margin-bottom: 14px;
+}
+
+.service-card p {
+    color: #9f9faa;
+    font-size: 14px;
+    max-width: 360px;
+}
+
+.service-link {
     position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(124,92,255,0.22);
-
-    filter: blur(70px);
-
-    right: -70px;
-    top: -70px;
-}
-
-.project-content {
-    position: absolute;
-
-    bottom: 0;
-
-    left: 0;
-    right: 0;
-
-    padding: 28px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(5,5,8,0.95)
-        );
-}
-
-.project-content span {
-    font-size: 9px;
-
-    color: var(--purple-light);
-
-    letter-spacing: 0.16em;
-
-    font-weight: 800;
-}
-
-.project-content h3 {
-    font-size: 27px;
-
-    margin-top: 7px;
-}
-
-.project-content p {
-    color: #B5B2BE;
-
+    bottom: 30px;
+    color: #a45cff;
     font-size: 13px;
 }
 
 
-/* =========================================
-   PRICING
-========================================= */
+/* =========================================================
+   WORK
+========================================================= */
 
-.pricing-grid {
-    margin-top: 45px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 16px;
+.work {
+    background: #050507;
 }
 
-.price-card {
-    position: relative;
+.work-card {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
 
     padding: 30px;
 
-    min-height: 500px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 21px;
-
-    background:
-        linear-gradient(
-            150deg,
-            #17171E,
-            #0F0F13
-        );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.025);
 }
 
-.price-card.featured {
-    border-color:
-        rgba(124,92,255,0.65);
-
-    box-shadow:
-        0 20px 70px
-        rgba(124,92,255,0.12);
+.work-image {
+    overflow: hidden;
+    border-radius: 16px;
 }
 
-.popular {
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    padding:
-        6px
-        10px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(124,92,255,0.15);
-
-    color:
-        var(--purple-light);
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.1em;
-}
-
-.price-label {
-    color: var(--purple-light);
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.18em;
-}
-
-.price-card h3 {
-    font-size: 27px;
-
-    margin-top: 8px;
-}
-
-.price {
-    font-size: 42px;
-
-    font-weight: 850;
-
-    letter-spacing: -0.04em;
-
-    margin:
-        22px
-        0
-        5px;
-}
-
-.price-card > p {
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-.price-card ul {
-    list-style: none;
-
-    margin-top: 25px;
-
-    display: grid;
-
-    gap: 12px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.07);
-}
-
-.price-card li {
-    color: #D2CFD9;
-
-    font-size: 13px;
-}
-
-.price-card li::before {
-    content: "✓";
-
-    color: var(--purple-light);
-
-    margin-right: 9px;
-}
-
-.price-button,
-.price-card .primary-button {
-    margin-top: auto;
-
+.work-image img {
     width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.project-category {
+    color: #914cff;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.work-content h3 {
+    font-size: 42px;
+    margin: 12px 0 18px;
+}
+
+.work-content p {
+    color: #a3a3ae;
+    margin-bottom: 30px;
 }
 
 
-/* =========================================
+/* =========================================================
    PROCESS
-========================================= */
+========================================================= */
+
+.process {
+    background: #08080d;
+}
 
 .process-grid {
-    margin-top: 50px;
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
 }
 
-.process-card {
-    padding: 25px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 17px;
-
-    background: #111116;
+.process-grid > div {
+    padding: 30px;
+    border-top: 1px solid rgba(145, 76, 255, 0.5);
 }
 
-.process-card span {
-    color: var(--purple-light);
-
-    font-size: 11px;
-
-    font-weight: 800;
+.process-grid span {
+    color: #914cff;
+    font-size: 12px;
 }
 
-.process-card h3 {
-    margin-top: 14px;
-
-    font-size: 19px;
+.process-grid h3 {
+    margin: 25px 0 12px;
+    font-size: 22px;
 }
 
-.process-card p {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    margin-top: 6px;
+.process-grid p {
+    color: #9999a5;
+    font-size: 14px;
 }
 
 
-/* =========================================
+/* =========================================================
    CONTACT
-========================================= */
+========================================================= */
 
-.contact-section {
+.contact {
     background:
         radial-gradient(
-            circle at 70% 30%,
-            rgba(124,92,255,0.16),
-            transparent 35%
-        );
+            circle at 50% 20%,
+            rgba(124, 58, 237, 0.14),
+            transparent 40%
+        ),
+        #050507;
 }
 
-.contact-container {
-    display: grid;
-
-    grid-template-columns:
-        0.8fr
-        1.2fr;
-
-    gap: 60px;
-
-    align-items: start;
+.contact-heading {
+    max-width: 800px;
+    margin-bottom: 55px;
 }
 
-.contact-content h2 {
-    margin-top: 14px;
-}
-
-.contact-content > p:last-child {
+.contact-heading > p:last-child {
+    color: #a3a3ae;
     margin-top: 20px;
-
-    color: var(--muted);
-
-    font-size: 15px;
+    max-width: 600px;
 }
 
-.contact-form {
-    padding: 30px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #17171E,
-            #0F0F13
-        );
+.enquiry-form {
+    max-width: 850px;
 }
 
 .form-row {
     display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap: 13px;
-
-    margin-bottom: 13px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
     width: 100%;
+    margin-bottom: 16px;
+    padding: 17px 18px;
 
-    border:
-        1px solid
-        rgba(255,255,255,0.11);
-
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 
-    background: #0C0C10;
-
+    background: rgba(255, 255, 255, 0.035);
     color: white;
 
-    padding:
-        14px;
-
     outline: none;
+    font: inherit;
 
-    font-size: 13px;
-
-    margin-bottom: 13px;
-
-    transition: 0.2s ease;
+    transition: 0.3s ease;
 }
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-    border-color:
-        var(--purple);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(124,92,255,0.10);
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus {
+    border-color: #914cff;
+    box-shadow: 0 0 0 3px rgba(145, 76, 255, 0.1);
 }
 
-.contact-form textarea {
-    min-height: 130px;
+.enquiry-form select option {
+    background: #111116;
+}
 
+.enquiry-form textarea {
     resize: vertical;
 }
 
-.contact-form .primary-button {
-    border: none;
 
-    cursor: pointer;
-
-    width: 100%;
-}
-
-
-/* =========================================
+/* =========================================================
    FOOTER
-========================================= */
+========================================================= */
 
 footer {
-    border-top:
-        1px solid
-        rgba(255,255,255,0.07);
-
-    padding:
-        45px
-        0
-        25px;
-
-    color: var(--muted);
-}
-
-.footer-container {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 30px;
+    padding: 55px 7% 35px;
+    background: #030305;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .footer-brand {
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.15em;
-}
-
-.footer-container p {
-    margin-top: 5px;
-
-    font-size: 11px;
-
-    color: var(--purple-light);
-}
-
-.footer-links {
     display: flex;
-
-    gap: 22px;
-
-    flex-wrap: wrap;
-
-    font-size: 12px;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
 }
 
-.footer-links a:hover {
-    color: white;
+.footer-brand img {
+    width: 48px;
+    height: 48px;
+}
+
+.footer-brand div {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-brand strong {
+    letter-spacing: 1.5px;
+}
+
+.footer-brand span {
+    color: #777783;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+footer > p {
+    color: #858591;
+    font-size: 13px;
 }
 
 .copyright {
-    text-align: center;
-
     margin-top: 35px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.05);
-
-    font-size: 10px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 
-    .nav-links,
-    .nav-button {
+    .nav-links {
+        gap: 18px;
+    }
+
+    .reality-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trusted-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar {
+        height: 70px;
+        padding: 0 5%;
+    }
+
+    .brand-text span {
         display: none;
     }
 
-    .hero-container {
-        grid-template-columns: 1fr;
-
-        text-align: center;
+    .nav-links {
+        display: none;
     }
 
-    .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .hero-logo {
-        width: 280px;
-        height: 280px;
-    }
-
-    .hero-visual {
-        min-height: 350px;
-    }
-
-    .intro-grid,
-    .services-grid,
-    .pricing-grid,
-    .process-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .work-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .project-large {
-        min-height: 350px;
-    }
-
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 600px) {
-
-    .nav-container {
-        height: 68px;
-    }
-
-    section {
-        padding:
-            75px
-            0;
+    .nav-button {
+        padding: 10px 15px;
     }
 
     .hero {
-        padding:
-            115px
-            0
-            70px;
+        min-height: 100svh;
+        background-position: center;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(4, 4, 8, 0.82),
+                rgba(4, 4, 8, 0.92)
+            );
+    }
+
+    .hero-content {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 80px;
     }
 
     .hero h1 {
-        font-size: 51px;
+        font-size: clamp(40px, 11vw, 58px);
     }
 
     .hero-description {
         font-size: 15px;
     }
 
-    .hero-logo {
-        width: 245px;
-        height: 245px;
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .hero-v {
-        font-size: 82px;
+    .hero-features {
+        gap: 14px;
     }
 
-    .hero-brand {
-        font-size: 17px;
+    .trusted-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .intro-grid,
+    .starting-point,
+    .digital-reality,
+    .services,
+    .work,
+    .process,
+    .contact {
+        padding: 85px 5%;
+    }
+
+    .reality-grid,
     .services-grid,
-    .pricing-grid,
     .process-grid {
         grid-template-columns: 1fr;
     }
 
-    .service-card {
-        min-height: auto;
+    .work-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 18px;
     }
 
-    .price-card {
-        min-height: auto;
+    .work-content h3 {
+        font-size: 34px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
-
         gap: 0;
     }
 
-    .footer-container {
-        flex-direction: column;
-
-        align-items: flex-start;
+    .price {
+        font-size: 52px;
     }
 
-    .footer-links {
-        gap: 14px;
-    }
-}
-/* VELORA DIGITAL OFFICIAL LOGOS */
-
-.real-logo-circle {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    border: 1px solid var(--purple);
-    box-shadow: 0 0 15px rgba(124, 92, 255, 0.35);
 }
 
-.real-logo-wide {
-    width: 88%;
-    max-width: 520px;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    border-radius: 20px;
-    filter: drop-shadow(0 0 30px rgba(124, 92, 255, 0.35));
-}
 
-@media (max-width: 600px) {
-    .real-logo-circle {
+@media (max-width: 480px) {
+
+    .brand img {
         width: 40px;
         height: 40px;
     }
 
-    .real-logo-wide {
-        width: 92%;
-    }
-}
-.hero-visual .glow,
-.hero-visual .hero-logo {
-    display: none;
-}
-/* ==========================================
-   VELORA DIGITAL — FULL CINEMATIC HERO
-   ========================================== */
-
-.hero {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
-
-    background-image:
-        linear-gradient(
-            rgba(5, 3, 15, 0.18),
-            rgba(5, 3, 15, 0.18)
-        ),
-        url("velora-hero.jpg");
-
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    overflow: hidden;
-}
-
-/* Hide the old hero text */
-.hero-content {
-    display: none !important;
-}
-
-/* Hide the old circular hero element */
-.hero-visual {
-    display: none !important;
-}
-
-/* Full-screen hero */
-.hero-container {
-    width: 100%;
-    max-width: none;
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-}
-
-/* Keep navigation visible above the image */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 100svh;
-        background-position: center center;
+    .brand-text strong {
+        font-size: 15px;
     }
 
-    .hero-container {
-        min-height: 100svh;
+    .nav-button {
+        font-size: 11px;
     }
-}
-/* =========================================
-   VELORA HERO — FULL BACKGROUND
-========================================= */
 
-.hero {
-    background-image:
-        linear-gradient(
-            rgba(5, 5, 10, 0.48),
-            rgba(5, 5, 10, 0.48)
-        ),
-        url("velora-hero.jpg");
+    .hero h1 {
+        letter-spacing: -1px;
+    }
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    .trusted-grid {
+        grid-template-columns: 1fr;
+    }
 
-    min-height: 100vh;
-}
+    .price-card {
+        padding: 30px;
+    }
 
-.hero-container {
-    grid-template-columns: 1fr;
-    width: 100%;
-}
-
-.hero-visual {
-    display: none;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 760px;
 }
