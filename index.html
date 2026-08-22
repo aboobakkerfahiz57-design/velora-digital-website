@@ -1,1326 +1,1237 @@
-/* =========================================
-   VELORA DIGITAL
-   Premium Obsidian Purple Theme
-========================================= */
+<!DOCTYPE html>
+<html lang="en">
 
-:root {
-    --obsidian: #08080B;
-    --dark: #0F0F14;
-    --card: #15151C;
+<head>
+    <meta charset="UTF-8">
 
-    --purple: #7C5CFF;
-    --purple-light: #A78BFA;
-    --purple-dark: #5B3CF2;
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    --white: #F7F5FF;
-    --text: #D4D1DD;
-    --muted: #9995A6;
+    <meta name="description"
+          content="VELORA DIGITAL — Premium web and digital solutions for ambitious businesses.">
 
-    --border: rgba(167, 139, 250, 0.18);
+    <meta name="keywords"
+          content="Velora Digital, web design, website development, digital solutions, e-commerce">
 
-    --container: 1180px;
-}
+    <meta name="author"
+          content="VELORA DIGITAL">
 
+    <title>VELORA DIGITAL — Digital Presence. Elevated.</title>
 
-/* =========================================
-   RESET
-========================================= */
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html {
-    scroll-behavior: smooth;
-}
+<body>
 
-body {
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+    <!-- ==============================
+         NAVIGATION
+    =============================== -->
 
-    background: var(--obsidian);
-    color: var(--white);
+    <header class="navbar">
 
-    line-height: 1.6;
+        <div class="container nav-container">
 
-    overflow-x: hidden;
-}
+            <a href="#home" class="logo">
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+                <div class="logo-circle">
+                    V
+                </div>
 
-button,
-input,
-textarea,
-select {
-    font-family: inherit;
-}
+                <div class="logo-text">
+                    VELORA
+                    <span>DIGITAL</span>
+                </div>
 
+            </a>
 
-/* =========================================
-   CONTAINER
-========================================= */
 
-.container {
-    width: min(92%, var(--container));
-    margin: auto;
-}
+            <nav class="nav-links">
 
+                <a href="#home">Home</a>
 
-/* =========================================
-   NAVIGATION
-========================================= */
+                <a href="#services">Services</a>
 
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+                <a href="#work">Work</a>
 
-    z-index: 1000;
+                <a href="#pricing">Pricing</a>
 
-    background: rgba(8, 8, 11, 0.78);
+                <a href="#process">Process</a>
 
-    backdrop-filter: blur(20px);
+                <a href="#contact">Contact</a>
 
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-}
+            </nav>
 
-.nav-container {
-    height: 78px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+            <a href="#contact" class="nav-button">
+                Start a Project
+            </a>
 
-    gap: 30px;
-}
+        </div>
 
+    </header>
 
-/* LOGO */
 
-.logo {
-    display: flex;
-    align-items: center;
 
-    gap: 11px;
+    <!-- ==============================
+         MAIN
+    =============================== -->
 
-    font-weight: 800;
-    letter-spacing: 0.12em;
-}
+    <main>
 
-.logo-circle {
-    width: 43px;
-    height: 43px;
 
-    border-radius: 50%;
+        <!-- ==============================
+             HERO
+        =============================== -->
 
-    border: 1px solid var(--purple);
+        <section id="home" class="hero">
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            <div class="container hero-container">
 
-    color: var(--purple-light);
 
-    font-size: 19px;
+                <div class="hero-content">
 
-    box-shadow:
-        0 0 25px rgba(124, 92, 255, 0.25);
-}
+                    <p class="eyebrow">
+                        PREMIUM DIGITAL SOLUTIONS
+                    </p>
 
-.logo-text {
-    font-size: 14px;
-}
 
-.logo-text span {
-    display: block;
+                    <h1>
+                        Digital Presence.
+                        <span>Elevated.</span>
+                    </h1>
 
-    font-size: 8px;
 
-    color: var(--purple-light);
+                    <p class="hero-description">
 
-    letter-spacing: 0.38em;
+                        We design and build premium digital
+                        experiences that help ambitious businesses
+                        look credible, attract customers and grow online.
 
-    margin-top: 2px;
-}
+                    </p>
 
 
-/* NAV LINKS */
+                    <div class="hero-buttons">
 
-.nav-links {
-    display: flex;
+                        <a href="#contact"
+                           class="primary-button">
 
-    gap: 27px;
+                            Start a Project →
 
-    color: #BEBBC8;
+                        </a>
 
-    font-size: 13px;
-}
 
-.nav-links a {
-    transition: 0.25s ease;
-}
+                        <a href="#work"
+                           class="secondary-button">
 
-.nav-links a:hover {
-    color: white;
-}
+                            View Our Work
 
+                        </a>
 
-/* NAV BUTTON */
+                    </div>
 
-.nav-button {
-    padding: 12px 19px;
+                </div>
 
-    border-radius: 9px;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--purple-dark)
-        );
 
-    border: 1px solid var(--purple);
+                <!-- HERO VISUAL -->
 
-    font-size: 12px;
+                <div class="hero-visual">
 
-    font-weight: 700;
+                    <div class="glow"></div>
 
-    box-shadow:
-        0 10px 30px rgba(124, 92, 255, 0.22);
 
-    transition: 0.25s ease;
-}
+                    <div class="hero-logo">
 
-.nav-button:hover {
-    transform: translateY(-2px);
+                        <div class="hero-v">
+                            V
+                        </div>
 
-    box-shadow:
-        0 15px 40px rgba(124, 92, 255, 0.35);
-}
 
+                        <div class="hero-brand">
+                            VELORA
+                        </div>
 
-/* =========================================
-   HERO
-========================================= */
 
-.hero {
-    min-height: 100vh;
+                        <div class="hero-digital">
+                            DIGITAL
+                        </div>
 
-    padding:
-        150px
-        0
-        100px;
+                    </div>
 
-    display: flex;
-    align-items: center;
+                </div>
 
-    position: relative;
+            </div>
 
-    background:
+        </section>
 
-        radial-gradient(
-            circle at 75% 45%,
-            rgba(124, 92, 255, 0.20),
-            transparent 30%
-        ),
 
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(124, 92, 255, 0.08),
-            transparent 30%
-        );
-}
 
-.hero-container {
-    display: grid;
+        <!-- ==============================
+             INTRO
+        =============================== -->
 
-    grid-template-columns:
-        1.05fr
-        0.95fr;
+        <section class="intro-section">
 
-    align-items: center;
+            <div class="container">
 
-    gap: 60px;
-}
+                <p class="section-label">
+                    WE BUILD EXPERIENCES
+                </p>
 
 
-/* EYEBROW */
+                <h2>
+                    Your business deserves
+                    more than a website.
+                </h2>
 
-.eyebrow,
-.section-label {
-    color: var(--purple-light);
 
-    font-size: 11px;
+                <p class="section-description">
 
-    font-weight: 800;
+                    Your website is often the first interaction
+                    a customer has with your brand.
 
-    letter-spacing: 0.22em;
+                    VELORA combines design, technology and strategy
+                    to create digital experiences that make a
+                    powerful first impression.
 
-    text-transform: uppercase;
-}
+                </p>
 
-.eyebrow {
-    margin-bottom: 20px;
-}
 
 
-/* HERO TITLE */
+                <div class="intro-grid">
 
-.hero h1 {
-    font-size:
-        clamp(
-            52px,
-            8vw,
-            94px
-        );
 
-    line-height: 0.95;
+                    <div class="intro-card">
 
-    letter-spacing: -0.055em;
+                        <h3>
+                            Design.
+                        </h3>
 
-    max-width: 750px;
-}
+                        <p>
+                            Beautiful, modern and
+                            purpose-driven experiences.
+                        </p>
 
-.hero h1 span {
-    color: var(--purple);
+                    </div>
 
-    text-shadow:
-        0 0 35px
-        rgba(124, 92, 255, 0.30);
-}
 
 
-/* HERO DESCRIPTION */
+                    <div class="intro-card">
 
-.hero-description {
-    max-width: 620px;
+                        <h3>
+                            Technology.
+                        </h3>
 
-    margin:
-        27px
-        0
-        32px;
+                        <p>
+                            Fast, reliable and
+                            future-ready solutions.
+                        </p>
 
-    color: var(--muted);
+                    </div>
 
-    font-size: 17px;
-}
 
 
-/* HERO BUTTONS */
+                    <div class="intro-card">
 
-.hero-buttons {
-    display: flex;
+                        <h3>
+                            Strategy.
+                        </h3>
 
-    gap: 12px;
+                        <p>
+                            Digital products built
+                            around your business goals.
+                        </p>
 
-    flex-wrap: wrap;
-}
+                    </div>
 
-.primary-button,
-.secondary-button,
-.price-button {
-    display: inline-flex;
 
-    align-items: center;
-    justify-content: center;
+                </div>
 
-    padding:
-        13px
-        21px;
+            </div>
 
-    border-radius: 10px;
+        </section>
 
-    font-size: 13px;
 
-    font-weight: 700;
 
-    transition: 0.25s ease;
-}
+        <!-- ==============================
+             SERVICES
+        =============================== -->
 
-.primary-button {
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--purple-dark)
-        );
+        <section id="services"
+                 class="services-section">
 
-    border: 1px solid var(--purple);
+            <div class="container">
 
-    color: white;
 
-    box-shadow:
-        0 12px 35px
-        rgba(124, 92, 255, 0.25);
-}
+                <p class="section-label">
+                    OUR SERVICES
+                </p>
 
-.primary-button:hover {
-    transform: translateY(-3px);
 
-    box-shadow:
-        0 17px 45px
-        rgba(124, 92, 255, 0.38);
-}
+                <h2>
+                    Digital solutions
+                    built around your business.
+                </h2>
 
-.secondary-button,
-.price-button {
-    border: 1px solid rgba(255,255,255,0.18);
 
-    background: rgba(255,255,255,0.02);
+                <p class="section-description">
 
-    color: #E5E2EB;
-}
+                    From websites to custom digital systems,
+                    VELORA helps businesses build a stronger
+                    presence online.
 
-.secondary-button:hover,
-.price-button:hover {
-    border-color: var(--purple);
+                </p>
 
-    background:
-        rgba(124,92,255,0.08);
 
-    transform: translateY(-2px);
-}
 
+                <div class="services-grid">
 
-/* =========================================
-   HERO LOGO
-========================================= */
 
-.hero-visual {
-    position: relative;
+                    <!-- SERVICE 01 -->
 
-    min-height: 450px;
+                    <article class="service-card">
 
-    display: flex;
+                        <span class="service-number">
+                            01
+                        </span>
 
-    align-items: center;
 
-    justify-content: center;
-}
+                        <div class="service-icon">
+                            ◇
+                        </div>
 
-.glow {
-    position: absolute;
 
-    width: 330px;
-    height: 330px;
+                        <h3>
+                            Website Design & Development
+                        </h3>
 
-    border-radius: 50%;
 
-    background:
-        rgba(124,92,255,0.25);
+                        <p>
 
-    filter: blur(85px);
-}
+                            Premium responsive websites designed
+                            around your brand and customers.
 
-.hero-logo {
-    width: 330px;
-    height: 330px;
+                        </p>
 
-    border-radius: 50%;
+                    </article>
 
-    border:
-        1px solid
-        rgba(167,139,250,0.55);
 
-    background:
-        radial-gradient(
-            circle,
-            #19162A,
-            #0C0C10 68%
-        );
 
-    display: flex;
+                    <!-- SERVICE 02 -->
 
-    flex-direction: column;
+                    <article class="service-card">
 
-    align-items: center;
+                        <span class="service-number">
+                            02
+                        </span>
 
-    justify-content: center;
 
-    position: relative;
+                        <div class="service-icon">
+                            ◈
+                        </div>
 
-    box-shadow:
-        0 0 80px
-        rgba(124,92,255,0.18);
 
-    animation:
-        floatingLogo 5s
-        ease-in-out
-        infinite;
-}
+                        <h3>
+                            E-Commerce
+                        </h3>
 
-.hero-v {
-    font-size: 110px;
 
-    line-height: 1;
+                        <p>
 
-    font-weight: 800;
+                            Modern online stores designed to
+                            create smooth shopping experiences.
 
-    color: var(--purple-light);
+                        </p>
 
-    text-shadow:
-        0 0 35px
-        rgba(124,92,255,0.45);
-}
+                    </article>
 
-.hero-brand {
-    font-size: 21px;
 
-    letter-spacing: 0.2em;
 
-    font-weight: 800;
-}
+                    <!-- SERVICE 03 -->
 
-.hero-digital {
-    color: var(--purple-light);
+                    <article class="service-card">
 
-    font-size: 9px;
+                        <span class="service-number">
+                            03
+                        </span>
 
-    letter-spacing: 0.48em;
 
-    margin-top: 3px;
-}
+                        <div class="service-icon">
+                            ⌘
+                        </div>
 
-@keyframes floatingLogo {
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
+                        <h3>
+                            Web Applications
+                        </h3>
 
-    50% {
-        transform: translateY(-12px);
-    }
-}
 
+                        <p>
 
-/* =========================================
-   SECTIONS
-========================================= */
+                            Custom dashboards, portals and
+                            platforms built around your workflow.
 
-section {
-    padding:
-        110px
-        0;
-}
+                        </p>
 
-section h2 {
-    max-width: 800px;
+                    </article>
 
-    margin-top: 14px;
 
-    font-size:
-        clamp(
-            35px,
-            5vw,
-            58px
-        );
 
-    line-height: 1.05;
+                    <!-- SERVICE 04 -->
 
-    letter-spacing: -0.045em;
-}
+                    <article class="service-card">
 
-.section-description {
-    max-width: 680px;
+                        <span class="service-number">
+                            04
+                        </span>
 
-    margin-top: 18px;
 
-    color: var(--muted);
+                        <div class="service-icon">
+                            ✦
+                        </div>
 
-    font-size: 15px;
-}
 
+                        <h3>
+                            AI & Automation
+                        </h3>
 
-/* =========================================
-   INTRO
-========================================= */
 
-.intro-section {
-    background:
-        linear-gradient(
-            180deg,
-            #0B0B0F,
-            #0E0E13
-        );
-}
+                        <p>
 
-.intro-grid {
-    margin-top: 40px;
+                            Smarter workflows, AI assistants and
+                            automation for growing businesses.
 
-    display: grid;
+                        </p>
 
-    grid-template-columns:
-        repeat(3, 1fr);
+                    </article>
 
-    gap: 1px;
 
-    background: var(--border);
-}
 
-.intro-card {
-    padding: 30px;
+                    <!-- SERVICE 05 -->
 
-    background: #111116;
-}
+                    <article class="service-card">
 
-.intro-card h3 {
-    font-size: 21px;
+                        <span class="service-number">
+                            05
+                        </span>
 
-    margin-bottom: 8px;
-}
 
-.intro-card p {
-    color: var(--muted);
+                        <div class="service-icon">
+                            ◉
+                        </div>
 
-    font-size: 13px;
-}
 
+                        <h3>
+                            Website Care
+                        </h3>
 
-/* =========================================
-   SERVICES
-========================================= */
 
-.services-grid {
-    margin-top: 45px;
+                        <p>
 
-    display: grid;
+                            Maintenance, updates, security and
+                            technical support after launch.
 
-    grid-template-columns:
-        repeat(3, 1fr);
+                        </p>
 
-    gap: 16px;
-}
+                    </article>
 
-.service-card {
-    min-height: 275px;
 
-    position: relative;
 
-    padding: 28px;
+                    <!-- SERVICE 06 -->
 
-    border:
-        1px solid
-        var(--border);
+                    <article class="service-card">
 
-    border-radius: 20px;
+                        <span class="service-number">
+                            06
+                        </span>
 
-    background:
-        linear-gradient(
-            145deg,
-            #17171E,
-            #0F0F13
-        );
 
-    overflow: hidden;
+                        <div class="service-icon">
+                            +
+                        </div>
 
-    transition: 0.3s ease;
-}
 
-.service-card:hover {
-    transform: translateY(-7px);
+                        <h3>
+                            Custom Digital Solutions
+                        </h3>
 
-    border-color:
-        rgba(124,92,255,0.55);
 
-    box-shadow:
-        0 25px 60px
-        rgba(124,92,255,0.10);
-}
+                        <p>
 
-.service-number {
-    position: absolute;
+                            Have a unique idea? We'll design
+                            a digital solution around your business.
 
-    top: 20px;
-    right: 22px;
+                        </p>
 
-    color:
-        rgba(167,139,250,0.45);
+                    </article>
 
-    font-size: 12px;
 
-    font-weight: 800;
-}
+                </div>
 
-.service-icon {
-    width: 52px;
-    height: 52px;
+            </div>
 
-    border-radius: 15px;
+        </section>
 
-    background:
-        rgba(124,92,255,0.10);
 
-    border:
-        1px solid
-        rgba(124,92,255,0.20);
 
-    display: flex;
+        <!-- ==============================
+             PORTFOLIO / WORK
+        =============================== -->
 
-    align-items: center;
-    justify-content: center;
+        <section id="work"
+                 class="work-section">
 
-    color: var(--purple-light);
+            <div class="container">
 
-    font-size: 22px;
 
-    margin-bottom: 27px;
-}
+                <p class="section-label">
+                    SELECTED WORK
+                </p>
 
-.service-card h3 {
-    font-size: 20px;
 
-    margin-bottom: 10px;
-}
+                <h2>
+                    Built to make
+                    an impression.
+                </h2>
 
-.service-card p {
-    color: var(--muted);
 
-    font-size: 13px;
-}
+                <p class="section-description">
 
+                    A preview of the premium digital experiences
+                    VELORA can create.
 
-/* =========================================
-   WORK
-========================================= */
+                </p>
 
-.work-section {
-    background: #0D0D12;
-}
 
-.work-grid {
-    margin-top: 45px;
 
-    display: grid;
+                <div class="work-grid">
 
-    grid-template-columns:
-        1.15fr
-        0.85fr;
 
-    gap: 17px;
-}
+                    <!-- PROJECT 01 -->
 
-.project-card {
-    min-height: 270px;
+                    <div class="project-card project-large">
 
-    position: relative;
+                        <div class="project-glow"></div>
 
-    overflow: hidden;
 
-    border-radius: 21px;
+                        <div class="project-content">
 
-    border:
-        1px solid
-        var(--border);
+                            <span>
+                                DEMO CONCEPT
+                            </span>
 
-    background:
-        linear-gradient(
-            135deg,
-            #11111A,
-            #211C3C,
-            #0B0B0F
-        );
 
-    transition: 0.35s ease;
-}
+                            <h3>
+                                THE JEWELS
+                            </h3>
 
-.project-large {
-    min-height: 420px;
-}
 
-.project-card:hover {
-    transform: translateY(-5px);
+                            <p>
+                                Premium jewellery digital experience.
+                            </p>
 
-    border-color:
-        rgba(124,92,255,0.5);
-}
+                        </div>
 
-.project-glow {
-    position: absolute;
+                    </div>
 
-    width: 250px;
-    height: 250px;
 
-    border-radius: 50%;
 
-    background:
-        rgba(124,92,255,0.22);
+                    <!-- PROJECT 02 -->
 
-    filter: blur(70px);
+                    <div class="project-card">
 
-    right: -70px;
-    top: -70px;
-}
+                        <div class="project-glow"></div>
 
-.project-content {
-    position: absolute;
 
-    bottom: 0;
+                        <div class="project-content">
 
-    left: 0;
-    right: 0;
+                            <span>
+                                DEMO CONCEPT
+                            </span>
 
-    padding: 28px;
 
-    background:
-        linear-gradient(
-            transparent,
-            rgba(5,5,8,0.95)
-        );
-}
+                            <h3>
+                                PROPERTY EXPERIENCE
+                            </h3>
 
-.project-content span {
-    font-size: 9px;
 
-    color: var(--purple-light);
+                            <p>
+                                Modern real-estate platform.
+                            </p>
 
-    letter-spacing: 0.16em;
+                        </div>
 
-    font-weight: 800;
-}
+                    </div>
 
-.project-content h3 {
-    font-size: 27px;
 
-    margin-top: 7px;
-}
 
-.project-content p {
-    color: #B5B2BE;
+                    <!-- PROJECT 03 -->
 
-    font-size: 13px;
-}
+                    <div class="project-card">
 
+                        <div class="project-glow"></div>
 
-/* =========================================
-   PRICING
-========================================= */
 
-.pricing-grid {
-    margin-top: 45px;
+                        <div class="project-content">
 
-    display: grid;
+                            <span>
+                                DEMO CONCEPT
+                            </span>
 
-    grid-template-columns:
-        repeat(3, 1fr);
 
-    gap: 16px;
-}
+                            <h3>
+                                BUSINESS LAUNCH
+                            </h3>
 
-.price-card {
-    position: relative;
 
-    padding: 30px;
+                            <p>
+                                Premium corporate website.
+                            </p>
 
-    min-height: 500px;
+                        </div>
 
-    display: flex;
+                    </div>
 
-    flex-direction: column;
 
-    border:
-        1px solid
-        var(--border);
+                </div>
 
-    border-radius: 21px;
+            </div>
 
-    background:
-        linear-gradient(
-            150deg,
-            #17171E,
-            #0F0F13
-        );
-}
+        </section>
 
-.price-card.featured {
-    border-color:
-        rgba(124,92,255,0.65);
 
-    box-shadow:
-        0 20px 70px
-        rgba(124,92,255,0.12);
-}
 
-.popular {
-    position: absolute;
+        <!-- ==============================
+             PRICING
+        =============================== -->
 
-    top: 20px;
-    right: 20px;
+        <section id="pricing"
+                 class="pricing-section">
 
-    padding:
-        6px
-        10px;
+            <div class="container">
 
-    border-radius: 20px;
 
-    background:
-        rgba(124,92,255,0.15);
+                <p class="section-label">
+                    SIMPLE PRICING
+                </p>
 
-    color:
-        var(--purple-light);
 
-    font-size: 9px;
+                <h2>
+                    Choose your
+                    starting point.
+                </h2>
 
-    font-weight: 800;
 
-    letter-spacing: 0.1em;
-}
+                <p class="section-description">
 
-.price-label {
-    color: var(--purple-light);
+                    Our packages provide a starting point.
+                    Final pricing depends on your project requirements.
 
-    font-size: 10px;
+                </p>
 
-    font-weight: 800;
 
-    letter-spacing: 0.18em;
-}
 
-.price-card h3 {
-    font-size: 27px;
+                <div class="pricing-grid">
 
-    margin-top: 8px;
-}
 
-.price {
-    font-size: 42px;
+                    <!-- STARTER -->
 
-    font-weight: 850;
+                    <div class="price-card">
 
-    letter-spacing: -0.04em;
+                        <p class="price-label">
+                            STARTER
+                        </p>
 
-    margin:
-        22px
-        0
-        5px;
-}
 
-.price-card > p {
-    color: var(--muted);
+                        <h3>
+                            Starter
+                        </h3>
 
-    font-size: 13px;
-}
 
-.price-card ul {
-    list-style: none;
+                        <div class="price">
+                            ₹7,999+
+                        </div>
 
-    margin-top: 25px;
 
-    display: grid;
+                        <p>
+                            For individuals and small businesses.
+                        </p>
 
-    gap: 12px;
 
-    padding-top: 20px;
+                        <ul>
 
-    border-top:
-        1px solid
-        rgba(255,255,255,0.07);
-}
+                            <li>
+                                Up to 5 pages
+                            </li>
 
-.price-card li {
-    color: #D2CFD9;
+                            <li>
+                                Responsive design
+                            </li>
 
-    font-size: 13px;
-}
+                            <li>
+                                WhatsApp integration
+                            </li>
 
-.price-card li::before {
-    content: "✓";
+                            <li>
+                                Basic SEO
+                            </li>
 
-    color: var(--purple-light);
+                            <li>
+                                Social media links
+                            </li>
 
-    margin-right: 9px;
-}
+                        </ul>
 
-.price-button,
-.price-card .primary-button {
-    margin-top: auto;
 
-    width: 100%;
-}
+                        <a href="#contact"
+                           class="price-button">
 
+                            Choose Starter
 
-/* =========================================
-   PROCESS
-========================================= */
+                        </a>
 
-.process-grid {
-    margin-top: 50px;
+                    </div>
 
-    display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
 
-    gap: 16px;
-}
+                    <!-- BUSINESS -->
 
-.process-card {
-    padding: 25px;
+                    <div class="price-card featured">
 
-    border:
-        1px solid
-        var(--border);
+                        <div class="popular">
+                            MOST POPULAR
+                        </div>
 
-    border-radius: 17px;
 
-    background: #111116;
-}
+                        <p class="price-label">
+                            BUSINESS
+                        </p>
 
-.process-card span {
-    color: var(--purple-light);
 
-    font-size: 11px;
+                        <h3>
+                            Business
+                        </h3>
 
-    font-weight: 800;
-}
 
-.process-card h3 {
-    margin-top: 14px;
+                        <div class="price">
+                            ₹14,999+
+                        </div>
 
-    font-size: 19px;
-}
 
-.process-card p {
-    color: var(--muted);
+                        <p>
+                            For growing professional businesses.
+                        </p>
 
-    font-size: 13px;
 
-    margin-top: 6px;
-}
+                        <ul>
 
+                            <li>
+                                5–10 pages
+                            </li>
 
-/* =========================================
-   CONTACT
-========================================= */
+                            <li>
+                                Premium UI/UX
+                            </li>
 
-.contact-section {
-    background:
-        radial-gradient(
-            circle at 70% 30%,
-            rgba(124,92,255,0.16),
-            transparent 35%
-        );
-}
+                            <li>
+                                Animations
+                            </li>
 
-.contact-container {
-    display: grid;
+                            <li>
+                                Lead forms
+                            </li>
 
-    grid-template-columns:
-        0.8fr
-        1.2fr;
+                            <li>
+                                Analytics
+                            </li>
 
-    gap: 60px;
+                            <li>
+                                SEO setup
+                            </li>
 
-    align-items: start;
-}
+                        </ul>
 
-.contact-content h2 {
-    margin-top: 14px;
-}
 
-.contact-content > p:last-child {
-    margin-top: 20px;
+                        <a href="#contact"
+                           class="primary-button">
 
-    color: var(--muted);
+                            Choose Business
 
-    font-size: 15px;
-}
+                        </a>
 
-.contact-form {
-    padding: 30px;
+                    </div>
 
-    border:
-        1px solid
-        var(--border);
 
-    border-radius: 20px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #17171E,
-            #0F0F13
-        );
-}
+                    <!-- PREMIUM -->
 
-.form-row {
-    display: grid;
+                    <div class="price-card">
 
-    grid-template-columns:
-        1fr
-        1fr;
+                        <p class="price-label">
+                            PREMIUM
+                        </p>
 
-    gap: 13px;
 
-    margin-bottom: 13px;
-}
+                        <h3>
+                            Premium
+                        </h3>
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-    width: 100%;
 
-    border:
-        1px solid
-        rgba(255,255,255,0.11);
+                        <div class="price">
+                            ₹29,999+
+                        </div>
 
-    border-radius: 10px;
 
-    background: #0C0C10;
+                        <p>
+                            For brands requiring advanced experiences.
+                        </p>
 
-    color: white;
 
-    padding:
-        14px;
+                        <ul>
 
-    outline: none;
+                            <li>
+                                Custom design
+                            </li>
 
-    font-size: 13px;
+                            <li>
+                                Advanced UI/UX
+                            </li>
 
-    margin-bottom: 13px;
+                            <li>
+                                Advanced integrations
+                            </li>
 
-    transition: 0.2s ease;
-}
+                            <li>
+                                SEO
+                            </li>
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-    border-color:
-        var(--purple);
+                            <li>
+                                Analytics
+                            </li>
 
-    box-shadow:
-        0 0 0 3px
-        rgba(124,92,255,0.10);
-}
+                            <li>
+                                Launch support
+                            </li>
 
-.contact-form textarea {
-    min-height: 130px;
+                        </ul>
 
-    resize: vertical;
-}
 
-.contact-form .primary-button {
-    border: none;
+                        <a href="#contact"
+                           class="price-button">
 
-    cursor: pointer;
+                            Choose Premium
 
-    width: 100%;
-}
+                        </a>
 
+                    </div>
 
-/* =========================================
-   FOOTER
-========================================= */
 
-footer {
-    border-top:
-        1px solid
-        rgba(255,255,255,0.07);
+                </div>
 
-    padding:
-        45px
-        0
-        25px;
+            </div>
 
-    color: var(--muted);
-}
+        </section>
 
-.footer-container {
-    display: flex;
 
-    justify-content: space-between;
 
-    align-items: center;
+        <!-- ==============================
+             PROCESS
+        =============================== -->
 
-    gap: 30px;
-}
+        <section id="process"
+                 class="process-section">
 
-.footer-brand {
-    color: white;
+            <div class="container">
 
-    font-size: 15px;
 
-    font-weight: 800;
+                <p class="section-label">
+                    OUR PROCESS
+                </p>
 
-    letter-spacing: 0.15em;
-}
 
-.footer-container p {
-    margin-top: 5px;
+                <h2>
+                    From idea to
+                    digital reality.
+                </h2>
 
-    font-size: 11px;
 
-    color: var(--purple-light);
-}
 
-.footer-links {
-    display: flex;
+                <div class="process-grid">
 
-    gap: 22px;
 
-    flex-wrap: wrap;
+                    <div class="process-card">
 
-    font-size: 12px;
-}
+                        <span>
+                            01
+                        </span>
 
-.footer-links a:hover {
-    color: white;
-}
+                        <h3>
+                            Discover
+                        </h3>
 
-.copyright {
-    text-align: center;
+                        <p>
+                            Understand your business,
+                            audience and goals.
+                        </p>
 
-    margin-top: 35px;
+                    </div>
 
-    padding-top: 20px;
 
-    border-top:
-        1px solid
-        rgba(255,255,255,0.05);
 
-    font-size: 10px;
-}
+                    <div class="process-card">
 
+                        <span>
+                            02
+                        </span>
 
-/* =========================================
-   MOBILE
-========================================= */
+                        <h3>
+                            Strategy
+                        </h3>
 
-@media (max-width: 900px) {
+                        <p>
+                            Plan the structure and
+                            user experience.
+                        </p>
 
-    .nav-links,
-    .nav-button {
-        display: none;
-    }
+                    </div>
 
-    .hero-container {
-        grid-template-columns: 1fr;
 
-        text-align: center;
-    }
 
-    .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-    }
+                    <div class="process-card">
 
-    .hero-buttons {
-        justify-content: center;
-    }
+                        <span>
+                            03
+                        </span>
 
-    .hero-logo {
-        width: 280px;
-        height: 280px;
-    }
+                        <h3>
+                            Design
+                        </h3>
 
-    .hero-visual {
-        min-height: 350px;
-    }
+                        <p>
+                            Create the visual experience.
+                        </p>
 
-    .intro-grid,
-    .services-grid,
-    .pricing-grid,
-    .process-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
+                    </div>
 
-    .work-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .project-large {
-        min-height: 350px;
-    }
 
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-}
+                    <div class="process-card">
 
+                        <span>
+                            04
+                        </span>
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
+                        <h3>
+                            Develop
+                        </h3>
 
-@media (max-width: 600px) {
+                        <p>
+                            Build the actual digital product.
+                        </p>
 
-    .nav-container {
-        height: 68px;
-    }
+                    </div>
 
-    section {
-        padding:
-            75px
-            0;
-    }
 
-    .hero {
-        padding:
-            115px
-            0
-            70px;
-    }
 
-    .hero h1 {
-        font-size: 51px;
-    }
+                    <div class="process-card">
 
-    .hero-description {
-        font-size: 15px;
-    }
+                        <span>
+                            05
+                        </span>
 
-    .hero-logo {
-        width: 245px;
-        height: 245px;
-    }
+                        <h3>
+                            Launch
+                        </h3>
 
-    .hero-v {
-        font-size: 82px;
-    }
+                        <p>
+                            Test, optimize and publish.
+                        </p>
 
-    .hero-brand {
-        font-size: 17px;
-    }
+                    </div>
 
-    .intro-grid,
-    .services-grid,
-    .pricing-grid,
-    .process-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .service-card {
-        min-height: auto;
-    }
 
-    .price-card {
-        min-height: auto;
-    }
+                    <div class="process-card">
 
-    .form-row {
-        grid-template-columns: 1fr;
+                        <span>
+                            06
+                        </span>
 
-        gap: 0;
-    }
+                        <h3>
+                            Grow
+                        </h3>
 
-    .footer-container {
-        flex-direction: column;
+                        <p>
+                            Support and improve over time.
+                        </p>
 
-        align-items: flex-start;
-    }
+                    </div>
 
-    .footer-links {
-        gap: 14px;
-    }
-}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             CONTACT
+        =============================== -->
+
+        <section id="contact"
+                 class="contact-section">
+
+            <div class="container contact-container">
+
+
+                <div class="contact-content">
+
+                    <p class="section-label">
+                        START A PROJECT
+                    </p>
+
+
+                    <h2>
+                        Let's build
+                        something exceptional.
+                    </h2>
+
+
+                    <p>
+
+                        Tell us about your business
+                        and what you want to build.
+
+                    </p>
+
+                </div>
+
+
+
+                <form class="contact-form"
+                      id="projectForm">
+
+
+                    <div class="form-row">
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Full Name *"
+                            required
+                        >
+
+
+                        <input
+                            type="text"
+                            name="company"
+                            placeholder="Company / Brand"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email *"
+                            required
+                        >
+
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            placeholder="WhatsApp / Phone *"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <select
+                        name="service"
+                        required>
+
+                        <option value="">
+                            Select Service *
+                        </option>
+
+                        <option>
+                            Website Design & Development
+                        </option>
+
+                        <option>
+                            E-Commerce
+                        </option>
+
+                        <option>
+                            Web Application
+                        </option>
+
+                        <option>
+                            AI & Automation
+                        </option>
+
+                        <option>
+                            Website Care
+                        </option>
+
+                        <option>
+                            Custom Digital Solution
+                        </option>
+
+                    </select>
+
+
+
+                    <select
+                        name="budget"
+                        required>
+
+                        <option value="">
+                            Select Budget *
+                        </option>
+
+                        <option>
+                            Below ₹10,000
+                        </option>
+
+                        <option>
+                            ₹10,000 – ₹25,000
+                        </option>
+
+                        <option>
+                            ₹25,000 – ₹50,000
+                        </option>
+
+                        <option>
+                            ₹50,000 – ₹1,00,000
+                        </option>
+
+                        <option>
+                            ₹1,00,000+
+                        </option>
+
+                        <option>
+                            Not sure yet
+                        </option>
+
+                    </select>
+
+
+
+                    <textarea
+                        name="message"
+                        placeholder="Tell us about your project *"
+                        required>
+                    </textarea>
+
+
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        Send Project Enquiry →
+
+                    </button>
+
+
+                    <p id="formMessage"
+                       class="form-message">
+                    </p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==============================
+         FOOTER
+    =============================== -->
+
+    <footer>
+
+        <div class="container footer-container">
+
+
+            <div>
+
+                <div class="footer-brand">
+                    VELORA DIGITAL
+                </div>
+
+
+                <p>
+                    Digital Presence. Elevated.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#work">
+                    Work
+                </a>
+
+                <a href="#pricing">
+                    Pricing
+                </a>
+
+                <a href="#process">
+                    Process
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="copyright">
+
+            © 2026 VELORA DIGITAL.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
