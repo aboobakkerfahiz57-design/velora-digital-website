@@ -259,3 +259,77 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+/* ==========================================
+   PROJECT DEMO SYSTEM
+   ========================================== */
+
+const projectData = {
+  jewels: {
+    title: "THE JEWELS",
+    category: "JEWELLERY WEBSITE",
+    description:
+      "A premium jewellery website concept designed to showcase collections, build trust and create a luxury online shopping experience.",
+    image: "jewels-demo.jpg"
+  },
+
+  tbd: {
+    title: "TBD GROUP",
+    category: "CORPORATE WEBSITE",
+    description:
+      "A premium corporate digital presence for a modern business group covering construction, interiors, real estate and business solutions.",
+    image: "tbd-demo.jpg"
+  },
+
+  business: {
+    title: "BUSINESS LAUNCH",
+    category: "BUSINESS WEBSITE",
+    description:
+      "A modern premium website concept created to help ambitious businesses launch, present their services and grow online.",
+    image: "business-demo.jpg"
+  }
+};
+
+const projectButtons = document.querySelectorAll("[data-demo]");
+
+projectButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const projectName = button.getAttribute("data-demo");
+    const project = projectData[projectName];
+
+    if (!project) return;
+
+    const modal = document.querySelector(".demo-modal");
+    const image = document.querySelector(".demo-image img");
+    const category = document.querySelector(".demo-content span");
+    const title = document.querySelector(".demo-content h2");
+    const description = document.querySelector(".demo-content p");
+
+    if (!modal) return;
+
+    if (image) {
+      image.src = project.image;
+      image.alt = project.title;
+    }
+
+    if (category) category.textContent = project.category;
+    if (title) title.textContent = project.title;
+    if (description) description.textContent = project.description;
+
+    modal.classList.add("active");
+    document.body.classList.add("modal-open");
+  });
+});
+
+const closeDemo = document.querySelector(".demo-close");
+
+if (closeDemo) {
+  closeDemo.addEventListener("click", () => {
+    const modal = document.querySelector(".demo-modal");
+
+    if (modal) {
+      modal.classList.remove("active");
+    }
+
+    document.body.classList.remove("modal-open");
+  });
+}
