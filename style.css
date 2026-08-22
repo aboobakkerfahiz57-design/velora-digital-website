@@ -1085,3 +1085,84 @@ body.modal-open {
 body.modal-open {
   overflow: hidden;
 }
+/* FINAL PROJECT DEMO FIX */
+
+.demo-modal-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.demo-modal-box {
+  position: relative;
+  z-index: 2;
+  width: min(1000px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #10101c;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  box-shadow: 0 30px 100px rgba(0,0,0,0.6);
+}
+
+.demo-image {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #151521;
+}
+
+.demo-image img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+.demo-content {
+  padding: 35px;
+}
+
+.demo-content span {
+  display: block;
+  color: #9b7cff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.demo-content h2 {
+  color: #ffffff;
+  font-size: 36px;
+  margin: 0 0 12px;
+}
+
+.demo-content p {
+  color: #a4a4b2;
+  max-width: 700px;
+  margin-bottom: 25px;
+}
+
+.demo-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  background: rgba(0,0,0,0.7);
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.demo-close:hover {
+  background: #9b7cff;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
