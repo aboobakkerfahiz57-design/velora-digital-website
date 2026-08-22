@@ -1,296 +1,64 @@
-// ==========================================
-// VELORA DIGITAL
-// Main JavaScript
-// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
 
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-// ==========================================
-// SMOOTH SCROLL
-// ==========================================
+        link.addEventListener("click", function (event) {
 
-document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+            const targetId = this.getAttribute("href");
 
-    link.addEventListener("click", function (event) {
+            if (!targetId || targetId === "#") {
+                return;
+            }
 
-        const targetId = this.getAttribute("href");
+            const target = document.querySelector(targetId);
 
-        const target = document.querySelector(targetId);
+            if (target) {
+                event.preventDefault();
 
-        if (target) {
-
-            event.preventDefault();
-
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        }
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
 
     });
 
-});
 
+    // Enquiry form
+    const enquiryForm = document.getElementById("enquiryForm");
 
+    if (enquiryForm) {
 
-// ==========================================
-// SCROLL REVEAL ANIMATION
-// ==========================================
-
-const revealElements =
-    document.querySelectorAll(
-        ".service-card, .project-card, .price-card, .process-card, .intro-card"
-    );
-
-
-const revealObserver =
-    new IntersectionObserver(
-
-        function (entries) {
-
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("visible");
-
-                    revealObserver.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.12
-        }
-
-    );
-
-
-revealElements.forEach(function (element) {
-
-    element.classList.add("reveal");
-
-    revealObserver.observe(element);
-
-});
-
-
-
-// ==========================================
-// NAVBAR SCROLL EFFECT
-// ==========================================
-
-const navbar =
-    document.querySelector(".navbar");
-
-
-window.addEventListener("scroll", function () {
-
-    if (window.scrollY > 40) {
-
-        navbar.classList.add("scrolled");
-
-    } else {
-
-        navbar.classList.remove("scrolled");
-
-    }
-
-});
-
-
-
-// ==========================================
-// CONTACT FORM
-// ==========================================
-
-const projectForm =
-    document.getElementById("projectForm");
-
-
-const formMessage =
-    document.getElementById("formMessage");
-
-
-if (projectForm) {
-
-    projectForm.addEventListener(
-        "submit",
-        function (event) {
+        enquiryForm.addEventListener("submit", function (event) {
 
             event.preventDefault();
 
+            const name = this.querySelector('[name="name"]').value.trim();
+            const phone = this.querySelector('[name="phone"]').value.trim();
+            const business = this.querySelector('[name="business"]').value.trim();
+            const service = this.querySelector('[name="service"]').value;
+            const message = this.querySelector('[name="message"]').value.trim();
 
-            const formData =
-                new FormData(projectForm);
+            const whatsappNumber = "916360695474";
 
+            const text =
+                `Hello VELORA DIGITAL,%0A%0A` +
+                `New Project Enquiry%0A%0A` +
+                `Name: ${name}%0A` +
+                `WhatsApp: ${phone}%0A` +
+                `Business: ${business}%0A` +
+                `Service: ${service}%0A%0A` +
+                `Project Details:%0A${message}`;
 
-            const name =
-                formData.get("name");
+            const whatsappURL =
+                `https://wa.me/${whatsappNumber}?text=${text}`;
 
-            const company =
-                formData.get("company");
-
-            const email =
-                formData.get("email");
-
-            const phone =
-                formData.get("phone");
-
-            const service =
-                formData.get("service");
-
-            const budget =
-                formData.get("budget");
-
-            const message =
-                formData.get("message");
-
-
-            const subject =
-                "New VELORA DIGITAL Project Enquiry";
-
-
-            const emailBody =
-
-                "VELORA DIGITAL — PROJECT ENQUIRY\n\n" +
-
-                "Name: " + name + "\n" +
-
-                "Company: " + company + "\n" +
-
-                "Email: " + email + "\n" +
-
-                "Phone / WhatsApp: " + phone + "\n\n" +
-
-                "Service: " + service + "\n" +
-
-                "Budget: " + budget + "\n\n" +
-
-                "Project Details:\n" +
-
-                message;
-
-
-            const mailtoLink =
-
-                "mailto:hello@veloradigital.com" +
-
-                "?subject=" +
-
-                encodeURIComponent(subject) +
-
-                "&body=" +
-
-                encodeURIComponent(emailBody);
-
-
-            formMessage.textContent =
-                "Opening your email application...";
-
-
-            formMessage.classList.add("show");
-
-
-            window.location.href =
-                mailtoLink;
-
-        }
-    );
-
-}
-
-
-
-// ==========================================
-// ACTIVE NAVIGATION
-// ==========================================
-
-const sections =
-    document.querySelectorAll("section[id]");
-
-
-const navLinks =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
-
-
-window.addEventListener(
-    "scroll",
-    function () {
-
-        let currentSection = "";
-
-
-        sections.forEach(function (section) {
-
-            const sectionTop =
-                section.offsetTop - 150;
-
-
-            const sectionHeight =
-                section.offsetHeight;
-
-
-            if (
-                window.scrollY >= sectionTop &&
-                window.scrollY < sectionTop + sectionHeight
-            ) {
-
-                currentSection =
-                    section.getAttribute("id");
-
-            }
-
-        });
-
-
-        navLinks.forEach(function (link) {
-
-            link.classList.remove("active");
-
-
-            if (
-                link.getAttribute("href") ===
-                "#" + currentSection
-            ) {
-
-                link.classList.add("active");
-
-            }
+            window.open(whatsappURL, "_blank");
 
         });
 
     }
-);
 
-
-
-// ==========================================
-// PAGE LOAD
-// ==========================================
-
-window.addEventListener(
-    "load",
-    function () {
-
-        document.body.classList.add(
-            "page-loaded"
-        );
-
-    }
-);
-
-
-
-// ==========================================
-// CONSOLE MESSAGE
-// ==========================================
-
-console.log(
-    "VELORA DIGITAL — Digital Presence. Elevated."
-);
+});
