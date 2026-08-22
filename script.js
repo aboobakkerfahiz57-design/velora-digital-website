@@ -155,10 +155,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("modal-open");
   }
 
-  modal.querySelector(".demo-close").addEventListener("click", closeDemo);
-
-  modal.querySelector(".demo-modal-overlay").addEventListener("click", closeDemo);
-
+modal.addEventListener("click", (event) => {
+    if (
+        event.target.closest(".demo-close") ||
+        event.target.classList.contains("demo-modal-overlay")
+    ) {
+        closeDemo();
+    }
+});
 
   document.addEventListener("keydown", event => {
 
