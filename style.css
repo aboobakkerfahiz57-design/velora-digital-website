@@ -1427,3 +1427,36 @@ footer {
         min-height: 100svh;
     }
 }
+/* =========================================
+   VELORA HERO — FULL BACKGROUND
+========================================= */
+
+.hero {
+    background-image:
+        linear-gradient(
+            rgba(5, 5, 10, 0.48),
+            rgba(5, 5, 10, 0.48)
+        ),
+        url("velora-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+}
+
+.hero-container {
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.hero-visual {
+    display: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+}
