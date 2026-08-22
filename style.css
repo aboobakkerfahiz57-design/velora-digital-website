@@ -1324,3 +1324,35 @@ footer {
         gap: 14px;
     }
 }
+/* VELORA DIGITAL OFFICIAL LOGOS */
+
+.real-logo-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--purple);
+    box-shadow: 0 0 15px rgba(124, 92, 255, 0.35);
+}
+
+.real-logo-wide {
+    width: 88%;
+    max-width: 520px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 20px;
+    filter: drop-shadow(0 0 30px rgba(124, 92, 255, 0.35));
+}
+
+@media (max-width: 600px) {
+    .real-logo-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .real-logo-wide {
+        width: 92%;
+    }
+}
