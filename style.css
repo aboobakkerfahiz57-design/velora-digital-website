@@ -398,7 +398,12 @@ select {
 
 .hero-visual {
     position: relative;
-
+background-image: url("velora-hero.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+border-radius: 24px;
+overflow: hidden;
     min-height: 450px;
 
     display: flex;
@@ -1355,4 +1360,8 @@ footer {
     .real-logo-wide {
         width: 92%;
     }
+}
+.hero-visual .glow,
+.hero-visual .hero-logo {
+    display: none;
 }
