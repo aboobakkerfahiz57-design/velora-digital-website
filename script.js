@@ -280,7 +280,7 @@ Please contact me regarding my enquiry.
 Thank you.`;
 
 
-      const whatsappNumber = "916360695474";
+      const whatsappNumber = "918088590273";
 
       const whatsappURL =
         "https://wa.me/" +
