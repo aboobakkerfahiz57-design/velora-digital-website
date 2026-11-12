@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090812">
+
+  <title>VELORA DIGITAL | Business OS</title>
+
+  <meta
+    name="description"
+    content="VELORA DIGITAL Business Operating System — Secure business management dashboard."
+  >
+
+  <link rel="stylesheet" href="admin.css">
+
+  <!-- Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+
+  <!-- Dashboard JavaScript -->
+  <script src="admin.js" defer></script>
+</head>
+
+<body>
+
+  <!-- =====================================
+       OWNER LOGIN
+  ====================================== -->
+
+  <div id="loginView" class="login-shell">
+
+    <div class="login-card">
+
+      <div class="brand-mark">V</div>
+
+      <p class="eyebrow">VELORA DIGITAL</p>
+
+      <h1>Business OS</h1>
+
+      <p class="muted">
+        Welcome to your business control centre.
+      </p>
+
+      <form id="loginForm">
+
+        <label for="loginEmail">
+          Email Address
+        </label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your owner email"
+          autocomplete="username"
+          required
+        >
+
+        <label for="loginPassword">
+          Password
+        </label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button
+          class="primary-btn"
+          id="loginButton"
+          type="submit"
+        >
+          Sign In Securely →
+        </button>
+
+        <p
+          id="loginMessage"
+          class="form-message"
+          role="status"
+        ></p>
+
+      </form>
+
+      <div class="login-foot">
+        <span>🔒</span>
+        Authorized Owner Access Only
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================
+       MAIN APPLICATION
+  ====================================== -->
+
+  <div id="appView" class="app-shell" hidden>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <a class="brand" href="admin.html">
+
+        <span class="brand-mark small">V</span>
+
+        <span>
+          <b>VELORA</b>
+          <small>BUSINESS OS</small>
+        </span>
+
+      </a>
+
+
+      <div class="side-label">
+        WORKSPACE
+      </div>
+
+      <button
+        class="nav-item active"
+        data-view="overview"
+        type="button"
+      >
+        <span>◫</span>
+        Overview
+      </button>
+
+      <button
+        class="nav-item"
+        data-view="enquiries"
+        type="button"
+      >
+        <span>✉</span>
+        Enquiries
+        <i id="enquiryNavCount">0</i>
+      </button>
+
+      <button
+        class="nav-item"
+        data-view="customers"
+        type="button"
+      >
+        <span>♙</span>
+        Customers
+      </button>
+
+      <button
+        class="nav-item"
+        data-view="projects"
+        type="button"
+      >
+        <span>▦</span>
+        Projects
+      </button>
+
+
+      <div class="side-label">
+        MANAGEMENT
+      </div>
+
+      <button
+        class="nav-item"
+        data-view="finance"
+        type="button"
+      >
+        <span>₹</span>
+        Quotations & Invoices
+      </button>
+
+      <button
+        class="nav-item"
+        data-view="expenses"
+        type="button"
+      >
+        <span>↗</span>
+        Expenses
+      </button>
+
+      <button
+        class="nav-item"
+        data-view="reminders"
+        type="button"
+      >
+        <span>◷</span>
+        Tasks & Reminders
+      </button>
+
+
+      <div class="sidebar-bottom">
+
+        <div class="secure-note">
+          <span class="online-dot"></span>
+          Secure database connection
+        </div>
+
+        <button
+          id="logoutButton"
+          class="logout-btn"
+          type="button"
+        >
+          ↪ Sign Out
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-area">
+
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+
+        <div>
+          <span class="eyebrow">
+            YOUR BUSINESS CONTROL CENTRE
+          </span>
+
+          <h2 id="pageTitle">
+            Overview
+          </h2>
+        </div>
+
+        <div class="user-chip">
+
+          <span class="online-dot"></span>
+
+          <span>
+            <b id="ownerName">Owner</b>
+            <small>Founder & CEO</small>
+          </span>
+
+        </div>
+
+      </header>
+
+
+      <!-- =====================================
+           OVERVIEW
+      ====================================== -->
+
+      <section
+        id="overviewView"
+        class="view-section"
+      >
+
+        <div class="welcome-panel">
+
+          <div>
+
+            <p class="eyebrow">
+              WELCOME BACK
+            </p>
+
+            <h1 id="welcomeName">
+              Your business, in focus.
+            </h1>
+
+            <p class="muted">
+              Here's the latest activity from
+              your Velora workspace.
+            </p>
+
+          </div>
+
+          <div class="welcome-orb">
+            V
+          </div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-grid">
+
+          <article class="stat-card">
+
+            <span>Total Enquiries</span>
+
+            <strong id="statEnquiries">—</strong>
+
+            <small>
+              Website enquiries received
+            </small>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <span>Customers</span>
+
+            <strong id="statCustomers">—</strong>
+
+            <small>
+              Customer records
+            </small>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <span>Active Projects</span>
+
+            <strong id="statProjects">—</strong>
+
+            <small>
+              Projects in progress
+            </small>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <span>Invoices</span>
+
+            <strong id="statInvoices">—</strong>
+
+            <small>
+              Invoice records
+            </small>
+
+          </article>
+
+        </div>
+
+
+        <!-- RECENT ENQUIRIES -->
+
+        <div class="section-card">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="eyebrow">
+                LATEST ACTIVITY
+              </p>
+
+              <h3>
+                Recent Enquiries
+              </h3>
+
+            </div>
+
+            <button
+              class="text-btn"
+              data-open-view="enquiries"
+              type="button"
+            >
+              View All →
+            </button>
+
+          </div>
+
+          <div
+            id="recentEnquiries"
+            class="table-wrap"
+          >
+            <p class="muted pad">
+              Loading enquiries...
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           ENQUIRIES
+      ====================================== -->
+
+      <section
+        id="enquiriesView"
+        class="view-section"
+        hidden
+      >
+
+        <div class="section-card">
+
+          <div class="section-head">
+
+            <div>
+
+              <p class="eyebrow">
+                LEAD MANAGEMENT
+              </p>
+
+              <h3>
+                Website Enquiries
+              </h3>
+
+              <p class="muted">
+                Enquiries submitted through
+                veloradigital.co.in
+              </p>
+
+            </div>
+
+            <button
+              class="secondary-btn"
+              id="refreshEnquiries"
+              type="button"
+            >
+              ↻ Refresh
+            </button>
+
+          </div>
+
+          <div
+            id="allEnquiries"
+            class="table-wrap"
+          >
+            <p class="muted pad">
+              Loading enquiries...
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           CUSTOMERS
+      ====================================== -->
+
+      <section
+        id="customersView"
+        class="view-section"
+        hidden
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            CLIENT RELATIONSHIPS
+          </p>
+
+          <h3>
+            Customers
+          </h3>
+
+          <p class="muted">
+            Manage customer information,
+            customer IDs and client relationships.
+          </p>
+
+          <div class="module-placeholder">
+
+            Customer profiles, customer IDs,
+            enquiry conversion and customer history
+            will be activated in the next development stage.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           PROJECTS
+      ====================================== -->
+
+      <section
+        id="projectsView"
+        class="view-section"
+        hidden
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            DELIVERY MANAGEMENT
+          </p>
+
+          <h3>
+            Projects
+          </h3>
+
+          <p class="muted">
+            Manage client projects and monitor
+            project progress.
+          </p>
+
+          <div class="module-placeholder">
+
+            Project records, deadlines,
+            tasks, progress tracking and
+            client updates will be activated next.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           QUOTATIONS & INVOICES
+      ====================================== -->
+
+      <section
+        id="financeView"
+        class="view-section"
+        hidden
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            BUSINESS FINANCE
+          </p>
+
+          <h3>
+            Quotations & Invoices
+          </h3>
+
+          <p class="muted">
+            Manage quotations, invoices,
+            payments and outstanding balances.
+          </p>
+
+          <div class="module-placeholder">
+
+            Professional quotation builder,
+            invoice creation, payment records
+            and PDF documents will be activated next.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           EXPENSES
+      ====================================== -->
+
+      <section
+        id="expensesView"
+        class="view-section"
+        hidden
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            COST CONTROL
+          </p>
+
+          <h3>
+            Expenses
+          </h3>
+
+          <p class="muted">
+            Track business expenses and operational costs.
+          </p>
+
+          <div class="module-placeholder">
+
+            Expense entries, categories,
+            payment methods and expense reports
+            will be activated next.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           TASKS & REMINDERS
+      ====================================== -->
+
+      <section
+        id="remindersView"
+        class="view-section"
+        hidden
+      >
+
+        <div class="section-card">
+
+          <p class="eyebrow">
+            DAILY OPERATIONS
+          </p>
+
+          <h3>
+            Tasks & Reminders
+          </h3>
+
+          <p class="muted">
+            Organize follow-ups, deadlines
+            and important business activities.
+          </p>
+
+          <div class="module-placeholder">
+
+            Tasks, reminders, due dates
+            and priority management
+            will be activated next.
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- FOOTER -->
+
+      <footer class="app-footer">
+
+        VELORA DIGITAL
+
+        <span>·</span>
+
+        DIGITAL PRESENCE. ELEVATED.
+
+      </footer>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
