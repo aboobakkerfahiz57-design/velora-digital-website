@@ -1,260 +1,5 @@
-    select.value = statuses.includes(row.status)
-      ? row.status
-      : "new";
 
-    select.addEventListener("change", async () => {
-      const previousStatus = row.status || "new";
-      select.disabled = true;
-
-      const { error } = await client
-        .from("enquiries")
-        .update({ status: select.value })
-        .eq("id", row.id);
-
-      select.disabled = false;
-
-      if (error) {
-        console.error("Status update failed:", error);
-        select.value = previousStatus;
-        alert("Could not update enquiry status: " + error.message);
-        return;
-      }
-
-      row.status = select.value;
-    });
-
-    return select;
-  }
-
-  /* =========================================
-     ONE-CLICK ENQUIRY TO CUSTOMER CONVERSION
-  ========================================= */
-
-  async function convertEnquiry(row, button) {
-    if (!currentUser) {
-      alert("Please sign in again.");
-      return;
-    }
-
-    if (row.customer_id) {
-      alert("This enquiry is already linked to a customer.");
-      await loadEnquiries();
-      return;
-    }
-
-    const confirmed = window.confirm(
-      "Convert " + row.customer_name +
-      " into a Velora customer?\n\n" +
-      "Their contact details will be copied into Customers."
-    );
-
-    if (!confirmed) return;
-
-    button.disabled = true;
-    button.textContent = "Converting...";
-
-    const { data, error } = await client.rpc(
-      "convert_enquiry_to_customer",
-      {
-        p_enquiry_id: row.id
-      }
-    );
-
-    if (error) {
-      console.error("Customer conversion failed:", error);
-      button.disabled = false;
-      button.textContent = "Convert to Customer";
-
-      alert(
-        "Conversion failed. Please check the database permissions and try again.\n\n" +
-        error.message
-      );
-
-      return;
-    }
-
-    const result = Array.isArray(data) ? data[0] : data;
-
-    if (!result || !result.customer_uuid) {
-      button.disabled = false;
-      button.textContent = "Convert to Customer";
-      alert("The database did not return a customer record. Please refresh.");
-      return;
-    }
-
-    row.customer_id = result.customer_uuid;
-    row.status = "converted";
-
-    alert(
-      result.already_converted
-        ? "This enquiry was already converted.\nCustomer ID: " +
-          (result.customer_number || "Created")
-        : "Customer created successfully!\n\nCustomer: " +
-          result.full_name +
-          "\nCustomer ID: " +
-          (result.customer_number || "Generated")
-    );
-
-    await loadDashboard();
-
-    if (!$("customersView").hidden) {
-      await loadCustomers();
-    }
-  }
-
-  /* =========================================
-     ENQUIRY TABLE
-  ========================================= */
-
-  function renderEnquiryTable(target, rows, compact = false) {
-    if (!rows || rows.length === 0) {
-      target.innerHTML =
-        '<div class="empty-state">No enquiries found yet.</div>';
-      return;
-    }
-
-    const table = document.createElement("table");
-    table.className = "data-table";
-
-    const headers = compact
-      ? ["Customer", "Service", "Received"]
-      : [
-          "Customer",
-          "Contact",
-          "Service",
-          "Budget",
-          "Status",
-          "Received",
-          "Action"
-        ];
-
-    const thead = document.createElement("thead");
-    const headerRow = document.createElement("tr");
-
-    headers.forEach((label) => {
-      const th = document.createElement("th");
-      th.textContent = label;
-      headerRow.appendChild(th);
-    });
-
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    const tbody = document.createElement("tbody");
-
-    rows.forEach((row) => {
-      const tr = document.createElement("tr");
-
-      if (compact) {
-        tr.appendChild(makeCell(row.customer_name));
-        tr.appendChild(makeCell(row.service));
-        tr.appendChild(
-          makeCell(
-            row.created_at
-              ? new Date(row.created_at).toLocaleDateString()
-              : "—"
-          )
-        );
-      } else {
-        tr.appendChild(makeCell(row.customer_name));
-        tr.appendChild(
-          makeCell(
-            [row.phone, row.email].filter(Boolean).join(" · ")
-          )
-        );
-        tr.appendChild(makeCell(row.service));
-        tr.appendChild(makeCell(row.budget));
-
-        const statusCell = document.createElement("td");
-        statusCell.appendChild(createStatusSelect(row));
-        tr.appendChild(statusCell);
-
-        tr.appendChild(makeCell(formatDate(row.created_at)));
-
-        const actionCell = document.createElement("td");
-
-        if (row.customer_id) {
-          const converted = document.createElement("span");
-          converted.className = "muted";
-          converted.textContent = "✓ Converted";
-          actionCell.appendChild(converted);
-        } else {
-          const convertButton = makeButton(
-            "Convert to Customer",
-            "secondary-btn",
-            () => convertEnquiry(row, convertButton)
-          );
-
-          convertButton.style.whiteSpace = "nowrap";
-          convertButton.style.fontSize = "11px";
-          convertButton.style.padding = "9px 11px";
-
-          actionCell.appendChild(convertButton);
-        }
-
-        tr.appendChild(actionCell);
-      }
-
-      tbody.appendChild(tr);
-    });
-
-    table.appendChild(tbody);
-    target.replaceChildren(table);
-  }
-
-  /* =========================================
-     LOAD ENQUIRIES
-  ========================================= */
-
-  async function loadEnquiries() {
-    if (!currentUser) return;
-
-    $("recentEnquiries").textContent = "Loading enquiries...";
-    $("allEnquiries").textContent = "Loading enquiries...";
-
-    const { data, error } = await client
-      .from("enquiries")
-      .select(`
-        id,
-        customer_name,
-        phone,
-        email,
-        service,
-        budget,
-        status,
-        customer_id,
-        created_at
-      `)
-      .order("created_at", { ascending: false })
-      .limit(100);
-
-    if (error) {
-      console.error("Could not load enquiries:", error);
-      showError(
-        $("recentEnquiries"),
-        "Unable to load enquiries: " + error.message
-      );
-      showError(
-        $("allEnquiries"),
-        "Unable to load enquiries: " + error.message
-      );
-      return;
-    }
-
-    const enquiries = data || [];
-
-    renderEnquiryTable(
-      $("recentEnquiries"),
-      enquiries.slice(0, 5),
-      true
-    );
-
-    renderEnquiryTable(
-      $("allEnquiries"),
-      enquiries,
-      false
-    );
-  }document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   /* =========================================
@@ -344,7 +89,7 @@
   }
 
   function showError(target, message) {
-    target.textContent = message;
+    if (target) target.textContent = message;
   }
 
   /* =========================================
@@ -404,21 +149,27 @@
     const email = $("loginEmail").value.trim();
     const password = $("loginPassword").value;
 
-    const { data, error } = await client.auth.signInWithPassword({
-      email,
-      password
-    });
+    try {
+      const { data, error } = await client.auth.signInWithPassword({
+        email,
+        password
+      });
 
-    button.disabled = false;
-    button.textContent = "Sign In Securely →";
+      if (error) {
+        console.error("Login failed:", error);
+        loginMessage.textContent = error.message;
+        return;
+      }
 
-    if (error) {
-      console.error("Login failed:", error);
-      loginMessage.textContent = error.message;
-      return;
+      await verifyOwner(data.user);
+    } catch (error) {
+      console.error("Unexpected login error:", error);
+      loginMessage.textContent =
+        "Login failed. Please refresh the page and try again.";
+    } finally {
+      button.disabled = false;
+      button.textContent = "Sign In Securely →";
     }
-
-    await verifyOwner(data.user);
   });
 
   /* =========================================
@@ -458,16 +209,18 @@
     return count ?? 0;
   }
 
-  async function loadDashboard() {
-    if (!currentUser) return;
-
-    const [enquiries, customers, projects, invoices] =
-      await Promise.all([
-        countRows("enquiries"),
-        countRows("customers"),
-        countRows("projects"),
-        countRows("invoices")
-      ]);
+  async function loadDashboardCounts() {
+    const [
+      enquiries,
+      customers,
+      projects,
+      invoices
+    ] = await Promise.all([
+      countRows("enquiries"),
+      countRows("customers"),
+      countRows("projects"),
+      countRows("invoices")
+    ]);
 
     $("statEnquiries").textContent = enquiries;
     $("statCustomers").textContent = customers;
@@ -476,10 +229,16 @@
 
     $("enquiryNavCount").textContent =
       enquiries === "—" ? "—" : enquiries;
+  }
 
+  async function loadDashboard() {
+    if (!currentUser) return;
+
+    await loadDashboardCounts();
     await loadEnquiries();
   }
-      /* =========================================
+
+  /* =========================================
      ENQUIRY STATUS DROPDOWN
   ========================================= */
 
@@ -761,7 +520,8 @@
       false
     );
   }
-      /* =========================================
+
+  /* =========================================
      CUSTOMER MODULE INTERFACE
   ========================================= */
 
@@ -1162,7 +922,8 @@
     table.appendChild(tbody);
     target.replaceChildren(table);
   }
-      async function openCustomerProfile(customerId) {
+
+  async function openCustomerProfile(customerId) {
     if (!currentUser) return;
 
     const customer = allCustomerRows.find(
@@ -1553,32 +1314,6 @@
         }
       }
     }
-  }
-
-  /* =========================================
-     REFRESH DASHBOARD COUNTS
-  ========================================= */
-
-  async function loadDashboardCounts() {
-    const [
-      enquiries,
-      customers,
-      projects,
-      invoices
-    ] = await Promise.all([
-      countRows("enquiries"),
-      countRows("customers"),
-      countRows("projects"),
-      countRows("invoices")
-    ]);
-
-    $("statEnquiries").textContent = enquiries;
-    $("statCustomers").textContent = customers;
-    $("statProjects").textContent = projects;
-    $("statInvoices").textContent = invoices;
-
-    $("enquiryNavCount").textContent =
-      enquiries === "—" ? "—" : enquiries;
   }
 
   /* =========================================
