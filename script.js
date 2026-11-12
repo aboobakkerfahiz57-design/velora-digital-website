@@ -1,4 +1,25 @@
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================================
+     SUPABASE INITIALIZATION
+  ========================================= */
+
+  let supabaseClient = null;
+
+  if (
+    window.supabase &&
+    window.VELORA_SUPABASE_URL &&
+    window.VELORA_SUPABASE_KEY
+  ) {
+    supabaseClient = window.supabase.createClient(
+      window.VELORA_SUPABASE_URL,
+      window.VELORA_SUPABASE_KEY
+    );
+  } else {
+    console.error("VELORA Supabase configuration is missing.");
+  }
+
 
   /* =========================================
      SMOOTH NAVIGATION
@@ -15,14 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(targetId);
 
       if (target) {
-
         e.preventDefault();
 
         target.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
-
       }
 
     });
@@ -219,58 +238,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
       closeDemo();
 
-      setTimeout(() => {
-
-        const contact = document.getElementById("contact");
-
-        if (contact) {
-
-          contact.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }
-
-      }, 100);
-
     });
 
   });
 
 
   /* =========================================
-     ENQUIRY FORM → WHATSAPP
+     ENQUIRY FORM → SUPABASE + WHATSAPP
   ========================================= */
 
   const enquiryForm = document.getElementById("enquiryForm");
 
   if (enquiryForm) {
 
-    enquiryForm.addEventListener("submit", event => {
+    enquiryForm.addEventListener("submit", async event => {
 
       event.preventDefault();
 
+      if (enquiryForm.dataset.submitting === "true") return;
+
+      if (!supabaseClient) {
+        alert(
+          "Our enquiry system is temporarily unavailable. Please contact us directly on WhatsApp."
+        );
+        return;
+      }
+
       const formData = new FormData(enquiryForm);
 
-      const name = formData.get("name") || "";
-      const phone = formData.get("phone") || "";
-      const email = formData.get("email") || "";
-      const service = formData.get("service") || "";
-      const budget = formData.get("budget") || "";
-      const message = formData.get("message") || "";
+      const name = String(formData.get("name") || "").trim();
+      const phone = String(formData.get("phone") || "").trim();
+      const email = String(formData.get("email") || "").trim();
+      const service = String(formData.get("service") || "").trim();
+      const budget = String(formData.get("budget") || "").trim();
+      const message = String(formData.get("message") || "").trim();
 
+      const submitButton = enquiryForm.querySelector(
+        'button[type="submit"]'
+      );
 
-      const whatsappMessage =
+      const originalButtonText = submitButton
+        ? submitButton.textContent
+        : "Send Enquiry →";
+
+      // Open WhatsApp tab during the user interaction
+      // to reduce popup-blocking problems.
+      const whatsappWindow = window.open("about:blank", "_blank");
+
+      enquiryForm.dataset.submitting = "true";
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Saving Enquiry...";
+      }
+
+      try {
+
+        const { error } = await supabaseClient
+          .from("enquiries")
+          .insert({
+            customer_name: name,
+            phone: phone,
+            email: email || null,
+            service: service,
+            budget: budget || null,
+            message: message,
+            source: "website"
+          });
+
+        if (error) {
+          throw error;
+        }
+
+        const whatsappMessage =
 `Hello VELORA DIGITAL,
 
 I would like to make an enquiry.
 
 Name: ${name}
 Phone / WhatsApp: ${phone}
-Email: ${email}
+Email: ${email || "Not provided"}
 Service: ${service}
-Budget: ${budget}
+Budget: ${budget || "Not specified"}
 
 Project Details:
 ${message}
@@ -279,21 +328,43 @@ Please contact me regarding my enquiry.
 
 Thank you.`;
 
+        const whatsappURL =
+          "https://wa.me/918088590273?text=" +
+          encodeURIComponent(whatsappMessage);
 
-      const whatsappNumber = "918088590273";
+        if (whatsappWindow && !whatsappWindow.closed) {
+          whatsappWindow.location.href = whatsappURL;
+        } else {
+          window.location.href = whatsappURL;
+        }
 
-      const whatsappURL =
-        "https://wa.me/" +
-        whatsappNumber +
-        "?text=" +
-        encodeURIComponent(whatsappMessage);
+        enquiryForm.reset();
 
+      } catch (error) {
 
-      window.open(whatsappURL, "_blank");
+        console.error("VELORA enquiry error:", error);
+
+        if (whatsappWindow && !whatsappWindow.closed) {
+          whatsappWindow.close();
+        }
+
+        alert(
+          "We couldn't save your enquiry. Please try again or contact us directly on WhatsApp."
+        );
+
+      } finally {
+
+        enquiryForm.dataset.submitting = "false";
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+
+      }
 
     });
 
   }
-
 
 });
