@@ -498,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
         display:grid;
         grid-template-columns:repeat(3,minmax(0,1fr));
         gap:12px;
-        margin:15px 0;
+                margin:15px 0;
       }
 
       .velora-summary {
@@ -998,7 +998,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "confirmed",
       "converted",
       "closed"
-    ];
+           ];
 
     statuses.forEach((status) => {
       const option = document.createElement("option");
@@ -1498,7 +1498,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tables = [
       ["enquiries", "Enquiries", "created_at"],
       ["projects", "Projects", "created_at"],
-      ["quotations", "Quotations", "created_at"],
+             ["quotations", "Quotations", "created_at"],
       ["invoices", "Invoices", "created_at"]
     ];
 
@@ -1998,7 +1998,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     (data || []).forEach((update) => {
-      const item = createElement("div", "section-card");
+             const item = createElement("div", "section-card");
 
       item.append(
         createElement("strong", "", update.title),
@@ -2498,7 +2498,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "Payment",
               "secondary-btn",
               () => openPaymentForm(invoice)
-            ),
+                           ),
             makeButton(
               "Print",
               "secondary-btn",
@@ -2998,7 +2998,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (isInvoice) {
       buttons.appendChild(
-        makeButton(
+                 makeButton(
           "Record Payment",
           "secondary-btn",
           () => {
@@ -3124,7 +3124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <script>
           window.onload = () => window.print();
-        <\/script>
+        <\\/script>
       </body>
       </html>
     `);
@@ -3497,8 +3497,7 @@ document.addEventListener("DOMContentLoaded", () => {
         receipt_url: nullable(formValue(form, "receipt_url")),
         notes: nullable(formValue(form, "notes"))
       };
-
-      let result;
+             let result;
 
       if (expense) {
         result = await db
@@ -3998,7 +3997,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".nav-item").forEach((button) => {
       button.classList.toggle(
-        "active",
+                 "active",
         button.dataset.extraView === view
       );
     });
@@ -4498,8 +4497,7 @@ document.addEventListener("DOMContentLoaded", () => {
             () => deleteNotification(item.id)
           )
         );
-
-        return [
+                 return [
           item.title,
           item.message,
           item.notification_type,
@@ -4997,8 +4995,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
   }
-
-  async function loadUpcomingReminders() {
+     async function loadUpcomingReminders() {
     const { data, error } = await db
       .from("business_reminders")
       .select("*")
