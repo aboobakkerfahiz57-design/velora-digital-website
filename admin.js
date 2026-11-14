@@ -2403,6 +2403,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "outstandingValue",
       money(invoicesCache.reduce((sum, row) => sum + number(row.balance), 0))
     );
+     setText(
+    "financeAmountReceived",
+    money(paymentsCache.reduce((sum, payment) => sum + number(payment.amount), 0))
+   );
 
     renderFinanceTab();
   }
