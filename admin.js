@@ -2385,7 +2385,7 @@ const results = await Promise.all([
     invoicesCache = results[1].data || [];
     customersCache = results[2].data || [];
     projectsCache = results[3].data || [];
-    paymentsCache = results[5].data || [];
+    paymentsCache = results[4].data || [];
 
     setText(
       "quotationValue",
