@@ -2918,7 +2918,7 @@ const results = await Promise.all([
     const itemTable = isInvoice ? "invoice_items" : "quotation_items";
     const idColumn = isInvoice ? "invoice_id" : "quotation_id";
 
-    const { data: document, error } = await db
+  const { data: invoiceData, error } = await db
       .from(table)
       .select("*, customers(full_name, phone, email, address), projects(project_name)")
       .eq("id", id)
@@ -2946,19 +2946,19 @@ const results = await Promise.all([
         "h2",
         "",
         (isInvoice ? "Invoice #" : "Quotation #") +
-        (isInvoice ? document.invoice_number : document.quote_number)
+        (isInvoice ?  invoiceData.invoice_number : invoiceData.quote_number)
       ),
-      createElement("p", "", document.customers?.full_name || "Customer"),
+      createElement("p", "", invoiceData.customers?.full_name || "Customer"),
       createElement(
         "p",
         "muted",
-        "Issue date: " + DATE(document.issue_date)
+        "Issue date: " + DATE(invoiceData.issue_date)
       ),
       createElement(
         "p",
         "muted",
         (isInvoice ? "Due date: " : "Valid until: ") +
-        DATE(isInvoice ? document.due_date : document.valid_until)
+        DATE(isInvoice ? invoiceData.due_date : invoiceData.valid_until)
       )
     );
 
@@ -2982,19 +2982,18 @@ const results = await Promise.all([
     const totals = createElement("div", "customer-profile-section");
 
     totals.append(
-      createElement("p", "", "Subtotal: " + money(document.subtotal)),
-      createElement("p", "", "Discount: " + money(document.discount)),
-      createElement("p", "", "Tax: " + money(document.tax)),
-      createElement("h3", "", "Total: " + money(document.total))
+      createElement("p", "", "Subtotal: " + money(invoiceData.subtotal)),
+      createElement("p", "", "Discount: " + money(invoiceData.discount)),
+      createElement("p", "", "Tax: " + money(invoiceData.tax)),
+      createElement("h3", "", "Total: " + money(invoiceData.total))
     );
 
     if (isInvoice) {
       totals.append(
-        createElement("p", "", "Paid: " + money(document.amount_paid)),
-        createElement("h3", "", "Balance: " + money(document.balance))
+        createElement("p", "", "Paid: " + money(invoiceData.amount_paid)),
+        createElement("h3", "", "Balance: " + money(invoiceData.balance))
       );
     }
-
     wrapper.append(totals);
 
     wrapper.append(
