@@ -2355,26 +2355,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ensureFinanceInterface();
 
-    const results = await Promise.all([
-      db.from("quotations").select("*").order("created_at", {
+const results = await Promise.all([
+    db.from("quotations").select("*").order("created_at", {
         ascending: false
-      }),
-      db.from("invoices").select("*").order("created_at", {
+    }),
+    db.from("invoices").select("*").order("created_at", {
         ascending: false
-      }),
-      db.from("customers").select("*").order("created_at", {
+    }),
+    db.from("customers").select("*").order("created_at", {
         ascending: false
-      }),
-      db.from("projects").select("*").order("created_at", {
+    }),
+    db.from("projects").select("*").order("created_at", {
         ascending: false
-      }),
-      db.from("projects").select("*").order("created_at", {
-       ascending: false
-       })
-       db.from("payments").select("*").order("payment_date", {
-         ascending: false
-       })
-       ]);
+    }),
+    db.from("payments").select("*").order("payment_date", {
+        ascending: false
+    })
+]);
+
 
     for (const result of results) {
       if (result.error) {
