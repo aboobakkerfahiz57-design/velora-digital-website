@@ -3677,32 +3677,15 @@ function bindStandalonePaymentsPage() {
           .eq("id", expense.id)
           .select("*")
           .single();
-      } else {
-        const { data: latest, error: latestError } = await db
-          .from("expenses")
-          .select("expense_number")
-          .order("expense_number", { ascending: false })
-          .limit(1);
+     
+} else {
+  result = await db
+    .from("expenses")
+    .insert(payload)
+    .select("*")
+    .single();
+}
 
-        if (latestError) {
-          save.disabled = false;
-          notify(latestError.message, "error");
-          return;
-        }
-
-        const nextNumber = latest?.length
-          ? Number(latest[0].expense_number) + 1
-          : 1001;
-
-        result = await db
-          .from("expenses")
-          .insert({
-            ...payload,
-            expense_number: nextNumber
-          })
-          .select("*")
-          .single();
-      }
 
       save.disabled = false;
 
