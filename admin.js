@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let projectsCache = [];
   let quotationsCache = [];
   let invoicesCache = [];
+  let paymentsCache = [];
   let expenseCategoriesCache = [];
-
   let currentFinanceTab = "quotations";
 
   const INR = new Intl.NumberFormat("en-IN", {
@@ -2367,8 +2367,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }),
       db.from("projects").select("*").order("created_at", {
         ascending: false
-      })
-    ]);
+      }),a
+      db.from("projects").select("*").order("created_at", {
+       ascending: false
+       })
+       db.from("payments").select("*").order("payment_date", {
+         ascending: false
+       })
+       ]);
 
     for (const result of results) {
       if (result.error) {
@@ -2381,6 +2387,7 @@ document.addEventListener("DOMContentLoaded", () => {
     invoicesCache = results[1].data || [];
     customersCache = results[2].data || [];
     projectsCache = results[3].data || [];
+    paymentsCache = results[5].data || [];
 
     setText(
       "quotationValue",
