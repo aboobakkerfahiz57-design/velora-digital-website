@@ -5132,7 +5132,16 @@ function bindStandalonePaymentsPage() {
       (sum, item) => sum + number(item.balance),
       0
     );
+    const revenueCard = $("statRevenue");
+const outstandingCard = $("statOutstanding");
 
+if (revenueCard) {
+  revenueCard.textContent = money(paid);
+}
+
+if (outstandingCard) {
+  outstandingCard.textContent = money(balance);
+}
     let container = $("overviewFinancialStats");
 
     if (!container) {
