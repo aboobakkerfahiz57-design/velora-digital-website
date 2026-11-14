@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let quotationsCache = [];
   let invoicesCache = [];
   let paymentsCache = [];
+  let standalonePaymentsCache = [];
   let expenseCategoriesCache = [];
   let currentFinanceTab = "quotations";
 
@@ -962,6 +963,7 @@ document.addEventListener("DOMContentLoaded", () => {
       customers: loadCustomers,
       projects: loadProjects,
       finance: loadFinance,
+      payments: loadStandalonePayments,
       expenses: loadExpenses,
       reminders: loadReminders
     };
@@ -3291,7 +3293,163 @@ const results = await Promise.all([
     );
   }
 
-  /* ==========================================================
+
+   
+/* ==========================================================
+   STANDALONE PAYMENTS MODULE
+========================================================== */
+
+async function loadStandalonePayments() {
+  if (!requireOwner()) return;
+
+  const target = $("paymentsList");
+  if (!target) return;
+
+  setLoading(target, "Loading payments...");
+
+  const { data, error } = await db
+    .from("payments")
+    .select("*, invoices(invoice_number, customer_id)")
+    .order("payment_date", { ascending: false })
+    .limit(1000);
+
+  if (error) {
+    showError(target, error.message);
+    return;
+  }
+
+  standalonePaymentsCache = data || [];
+
+  setText("paymentCount", String(standalonePaymentsCache.length));
+
+  setText(
+    "paymentCollected",
+    money(standalonePaymentsCache.reduce(
+      (sum, p) => sum + number(p.amount), 0
+    ))
+  );
+
+  renderStandalonePayments();
+}
+
+function renderStandalonePayments() {
+  const target = $("paymentsList");
+  if (!target) return;
+
+  const query = ($("paymentSearch")?.value || "")
+    .trim().toLowerCase();
+
+  const method = $("paymentMethodFilter")?.value || "";
+
+  const rows = standalonePaymentsCache.filter(p => {
+    const invoice = p.invoices?.invoice_number || p.invoice_id;
+
+    const text = [
+      invoice,
+      p.payment_method,
+      p.transaction_reference,
+      p.notes,
+      p.amount
+    ].join(" ").toLowerCase();
+
+    return (!query || text.includes(query)) &&
+      (!method || p.payment_method === method);
+  });
+
+  renderTable(
+    target,
+    ["Date", "Invoice", "Amount", "Method", "Reference", "Notes"],
+    rows.map(p => [
+      DATE(p.payment_date),
+      p.invoices?.invoice_number || p.invoice_id,
+      money(p.amount),
+      p.payment_method,
+      p.transaction_reference,
+      p.notes
+    ]),
+    "No payments recorded."
+  );
+}
+
+async function openStandalonePaymentSelector() {
+  if (!requireOwner()) return;
+
+  const { data: invoices, error } = await db
+    .from("invoices")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    notify(error.message, "error");
+    return;
+  }
+
+  const available = (invoices || []).filter(
+    invoice => number(invoice.balance) > 0
+  );
+
+  if (!available.length) {
+    notify("No outstanding invoices available.", "error");
+    return;
+  }
+
+  const form = document.createElement("form");
+  form.className = "velora-form";
+
+  const grid = formGrid();
+
+  grid.append(
+    field("Select Invoice", "invoice_id", "", "select", {
+      required: true,
+      choices: [
+        { value: "", label: "Choose an invoice" },
+        ...available.map(invoice => ({
+          value: invoice.id,
+          label: invoice.invoice_number +
+            " — Balance " + money(invoice.balance)
+        }))
+      ]
+    })
+  );
+
+  form.appendChild(grid);
+  addSubmit(form, "Continue to Payment");
+
+  openModal("Record Customer Payment", form);
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const id = formValue(form, "invoice_id");
+    const invoice = available.find(item => item.id === id);
+
+    if (!invoice) {
+      notify("Please select an invoice.", "error");
+      return;
+    }
+
+    closeModal();
+    openPaymentForm(invoice, true);
+  });
+}
+
+function bindStandalonePaymentsPage() {
+  $("addPaymentButton")?.addEventListener(
+    "click",
+    openStandalonePaymentSelector
+  );
+
+  $("paymentSearch")?.addEventListener(
+    "input",
+    renderStandalonePayments
+  );
+
+  $("paymentMethodFilter")?.addEventListener(
+    "change",
+    renderStandalonePayments
+  );
+}
+/* ==========================================================
      15. EXPENSE MANAGEMENT
   ========================================================== */
 
@@ -3702,7 +3860,7 @@ const results = await Promise.all([
     if (!requireOwner()) return;
 
     ensureReminderInterface();
-
+  
     $("reminderHeader").replaceChildren(
       makeModuleHeader(
         "Business Reminders",
@@ -5160,6 +5318,8 @@ const results = await Promise.all([
     ensureFinanceInterface();
     ensureExpenseInterface();
     ensureReminderInterface();
+    
+     bindStandalonePaymentsPage();
 
     setupExtraNavigation();
     ensureGlobalSearch();
