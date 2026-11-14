@@ -2997,8 +2997,8 @@ const results = await Promise.all([
     wrapper.append(totals);
 
     wrapper.append(
-      createElement("p", "muted", "Status: " + document.status),
-      createElement("p", "muted", document.notes || "")
+      createElement("p", "muted", "Status: " + invoiceData.status),
+      createElement("p", "muted", invoiceData.notes || "")
     );
 
     const buttons = actionRow();
@@ -3018,7 +3018,7 @@ const results = await Promise.all([
           "secondary-btn",
           () => {
             closeModal();
-            openPaymentForm(document);
+            openPaymentForm(invoiceData);
           }
         )
       );
