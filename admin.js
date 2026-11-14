@@ -2367,7 +2367,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }),
       db.from("projects").select("*").order("created_at", {
         ascending: false
-      }),a
+      }),
       db.from("projects").select("*").order("created_at", {
        ascending: false
        })
