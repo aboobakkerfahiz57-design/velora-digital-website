@@ -2463,3 +2463,358 @@ h4 {
 /* =========================================================
    END — VELORA DIGITAL BUSINESS OS
 ========================================================= */
+
+/* =====================================================
+   VELORA DIGITAL — OWNER WORKSPACE DESIGN UPDATE
+   Phase 1: Visual refinement
+   Existing HTML and JavaScript remain unchanged.
+===================================================== */
+
+:root {
+  --bg: #080711;
+  --bg-soft: #0d0b17;
+  --surface: #12101f;
+  --surface-2: #191629;
+  --surface-3: #211d35;
+  --surface-hover: #29233f;
+
+  --primary: #9270ff;
+  --primary-light: #b29aff;
+  --primary-dark: #7148e8;
+  --primary-soft: rgba(146, 112, 255, 0.13);
+
+  --text: #faf9ff;
+  --text-soft: #d7d2e7;
+  --muted: #9690a9;
+
+  --border: rgba(255,255,255,.075);
+  --border-strong: rgba(255,255,255,.13);
+
+  --radius-sm: 10px;
+  --radius-md: 15px;
+  --radius-lg: 21px;
+  --radius-xl: 27px;
+
+  --shadow: 0 20px 60px rgba(0,0,0,.28);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.18);
+}
+
+/* General appearance */
+
+body {
+  background:
+    radial-gradient(ellipse at 75% 0%, rgba(115,75,220,.12), transparent 38%),
+    var(--bg);
+  letter-spacing: .01em;
+}
+
+button, input, select, textarea {
+  transition: background .2s ease, border-color .2s ease,
+              box-shadow .2s ease, transform .2s ease;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 3px;
+}
+
+/* Sidebar */
+
+.sidebar {
+  background: rgba(13,11,23,.96);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.brand-mark {
+  box-shadow: 0 8px 28px rgba(146,112,255,.22);
+}
+
+.side-label {
+  color: #817995;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.nav-item {
+  border: 1px solid transparent;
+  border-radius: 11px;
+  margin: 3px 0;
+  transition: .2s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,.045);
+  border-color: var(--border);
+  transform: translateX(2px);
+}
+
+.nav-item.active {
+  background: linear-gradient(
+    100deg,
+    rgba(146,112,255,.19),
+    rgba(146,112,255,.055)
+  );
+  border-color: rgba(146,112,255,.20);
+  color: #c8b8ff;
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+/* Main workspace */
+
+.main-area {
+  min-width: 0;
+}
+
+.topbar {
+  background: rgba(8,7,17,.78);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+
+.topbar h2 {
+  letter-spacing: -.035em;
+  font-weight: 800;
+}
+
+.user-chip {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.035);
+  border-radius: 13px;
+  padding: 9px 13px;
+}
+
+/* Section cards */
+
+.card,
+.section-card,
+.stat-card,
+.dashboard-card,
+.finance-card {
+  background: linear-gradient(
+    145deg,
+    rgba(27,24,43,.96),
+    rgba(17,15,29,.98)
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.card:hover,
+.stat-card:hover,
+.dashboard-card:hover {
+  border-color: rgba(146,112,255,.22);
+}
+
+.stat-card {
+  padding: 21px;
+}
+
+.stat-card h3,
+.stat-card strong {
+  letter-spacing: -.035em;
+}
+
+.stat-card .stat-value {
+  font-size: clamp(23px, 3vw, 31px);
+  font-weight: 800;
+}
+
+/* Welcome area */
+
+.welcome-panel,
+.welcome-card {
+  border: 1px solid rgba(174,148,255,.20);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(178,154,255,.20), transparent 35%),
+    linear-gradient(120deg, #21183a, #151126 72%);
+  box-shadow: var(--shadow);
+}
+
+/* Buttons */
+
+.primary-btn,
+.primary-button,
+.btn-primary {
+  background: linear-gradient(135deg, #a48aff, #7148e8);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 11px;
+  box-shadow: 0 7px 20px rgba(113,72,232,.19);
+  font-weight: 700;
+}
+
+.primary-btn:hover,
+.primary-button:hover,
+.btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.secondary-btn,
+.secondary-button {
+  border-radius: 11px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255,255,255,.035);
+}
+
+.secondary-btn:hover,
+.secondary-button:hover {
+  background: rgba(255,255,255,.075);
+}
+
+/* Form controls */
+
+input,
+select,
+textarea {
+  border-radius: 10px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(146,112,255,.7);
+  box-shadow: 0 0 0 3px rgba(146,112,255,.12);
+}
+
+/* Tables */
+
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead th {
+  background: rgba(255,255,255,.035);
+  color: #aaa2bd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  transition: background .15s ease;
+}
+
+tbody tr:hover {
+  background: rgba(146,112,255,.045);
+}
+
+td, th {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Modals */
+
+.modal-backdrop,
+.modal-overlay {
+  backdrop-filter: blur(9px);
+  background: rgba(4,3,10,.76);
+}
+
+.modal-card,
+.modal-content {
+  background: #171426;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 30px 90px rgba(0,0,0,.48);
+}
+
+/* Status labels */
+
+.status-badge,
+.badge {
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .02em;
+}
+
+/* Smooth entrance */
+
+.view-section {
+  animation: veloraViewIn .28s ease both;
+}
+
+@keyframes veloraViewIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .main-area {
+    width: 100%;
+  }
+
+  .topbar {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .stat-card {
+    padding: 16px;
+  }
+
+  .card,
+  .section-card,
+  .dashboard-card {
+    border-radius: 15px;
+  }
+
+  .topbar h2 {
+    font-size: 19px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    min-height: 42px;
+  }
+
+  .table-wrap {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-section {
+    animation: none;
+  }
+
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* END — VELORA OWNER WORKSPACE UPDATE */
