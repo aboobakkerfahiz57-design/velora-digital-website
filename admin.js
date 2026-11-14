@@ -1863,7 +1863,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let result;
 
-      if (project) {
+      if (project?.id) {
         result = await db
           .from("projects")
           .update(payload)
@@ -2017,6 +2017,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function openProjectUpdateForm(projectId) {
+     
+ if (!projectId || typeof projectId !== "string") {
+  notify("Invalid project ID. Please reopen the project.", "error");
+  return;
+ }
     const form = document.createElement("form");
     form.className = "velora-form";
 
