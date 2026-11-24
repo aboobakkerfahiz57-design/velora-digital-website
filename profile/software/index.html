@@ -457,7 +457,7 @@
 
     const PROFILE_SLUG = "software";
 
-    const supabase = window.supabase.createClient(
+    const tapClient = window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_KEY
     );
@@ -536,7 +536,7 @@
 
         // Record the click before opening the destination.
         try {
-          const { error } = await supabase.rpc(
+          const { error } = await tapClient.rpc(
             "record_link_click",
             {
               p_business_id: BUSINESS_ID,
@@ -557,7 +557,7 @@
 
     async function loadProfile() {
       try {
-        const { data, error } = await supabase.rpc(
+        const { data, error } = await tapClient.rpc(
           "get_public_business_profile",
           {
             p_slug: PROFILE_SLUG
@@ -632,7 +632,7 @@
         $("profileContent").hidden = false;
 
         // Record one profile view after successful profile loading.
-        const { error: trackingError } = await supabase.rpc(
+        const { error: trackingError } = await tapClient.rpc(
           "record_profile_view",
           {
             p_business_id: BUSINESS_ID
