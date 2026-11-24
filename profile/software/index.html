@@ -1,0 +1,661 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b18">
+
+  <title>VELORA DIGITAL | Business Profile</title>
+  <meta name="description" content="Connect with VELORA DIGITAL. Website development and digital solutions.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #090b18;
+      --panel: rgba(20, 25, 49, 0.82);
+      --text: #ffffff;
+      --muted: #a8b0c8;
+      --blue: #7189ff;
+      --violet: #9b75ff;
+      --border: rgba(255,255,255,0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(73,93,210,.23), transparent 40%),
+        radial-gradient(ellipse at 90% 85%, rgba(124,73,220,.20), transparent 40%),
+        var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      width: 100%;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 7%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9,11,24,.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      font-size: 19px;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #b4bde9;
+    }
+
+    .nav-tag {
+      color: #aeb9ff;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .main {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      place-items: center;
+      padding: 65px 20px;
+    }
+
+    .profile {
+      width: 100%;
+      max-width: 510px;
+      padding: 42px 34px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 27px;
+      background: linear-gradient(
+        145deg,
+        rgba(31,39,75,.88),
+        rgba(14,17,36,.94)
+      );
+      box-shadow: 0 25px 90px rgba(0,0,0,.38);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(91,112,255,.15);
+      filter: blur(70px);
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .profile-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-wrap {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 22px;
+      padding: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      box-shadow: 0 0 35px rgba(111,132,255,.25);
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #151a35;
+    }
+
+    .logo-fallback {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #151a35;
+      font-family: Manrope, sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      color: #9eafff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(27px, 6vw, 35px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .description {
+      max-width: 380px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 19px;
+      padding: 8px 13px;
+      border: 1px solid rgba(100,220,170,.2);
+      border-radius: 30px;
+      background: rgba(50,180,130,.08);
+      color: #9ce6c2;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #54d99b;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 28px 0;
+      background: var(--border);
+    }
+
+    .connect-title {
+      color: #b4bce0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 17px;
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .link-btn {
+      width: 100%;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,255,255,.045);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .25s ease;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139,154,255,.6);
+      background: rgba(105,124,255,.13);
+    }
+
+    .link-btn.primary {
+      border: none;
+      background: linear-gradient(110deg, #647ff5, #9065e9);
+      box-shadow: 0 9px 25px rgba(91,109,242,.2);
+    }
+
+    .link-btn.primary:hover {
+      box-shadow: 0 12px 30px rgba(91,109,242,.35);
+    }
+
+    .link-btn i {
+      font-size: 17px;
+    }
+
+    .link-btn[hidden] {
+      display: none;
+    }
+
+    .footer {
+      margin-top: 29px;
+      color: #79819e;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .footer strong {
+      color: #aebaff;
+      letter-spacing: 1.5px;
+    }
+
+    .message {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .error {
+      color: #ffb1b1;
+    }
+
+    .loading {
+      padding: 45px 10px;
+      color: var(--muted);
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 15px;
+      border: 3px solid rgba(255,255,255,.15);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 520px) {
+      .navbar {
+        padding: 13px 19px;
+      }
+
+      .main {
+        padding: 35px 15px;
+      }
+
+      .profile {
+        padding: 35px 22px;
+        border-radius: 22px;
+      }
+
+      .nav-tag {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a href="https://veloradigital.co.in" class="brand">
+      <span class="brand-mark">V</span>
+      <span>
+        VELORA
+        <small>DIGITAL</small>
+      </span>
+    </a>
+
+    <span class="nav-tag">DIGITAL BUSINESS PROFILE</span>
+  </header>
+
+  <main class="main">
+    <section class="profile">
+      <div class="profile-content">
+
+        <div id="loading" class="loading">
+          <div class="spinner"></div>
+          Loading business profile...
+        </div>
+
+        <div id="profileContent" hidden>
+
+          <div class="logo-wrap">
+            <img id="businessLogo" alt="Business logo" hidden>
+            <div id="logoFallback" class="logo-fallback">V</div>
+          </div>
+
+          <p class="eyebrow">WELCOME TO</p>
+
+          <h1 id="businessName">VELORA DIGITAL</h1>
+
+          <p id="businessDescription" class="description">
+            Connect with our business.
+          </p>
+
+          <div class="status">
+            <span class="status-dot"></span>
+            Active Business Profile
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="connect-title">CONNECT WITH US</p>
+
+          <div class="links">
+
+            <a id="whatsappLink"
+               class="link-btn primary"
+               href="#"
+               target="_blank"
+               rel="noopener noreferrer"
+               hidden>
+              <i class="fa-brands fa-whatsapp"></i>
+              Chat on WhatsApp
+            </a>
+
+            <a id="websiteLink"
+               class="link-btn"
+               href="#"
+               target="_blank"
+               rel="noopener noreferrer"
+               hidden>
+              <i class="fa-solid fa-globe"></i>
+              Visit Our Website
+            </a>
+
+            <a id="instagramLink"
+               class="link-btn"
+               href="#"
+               target="_blank"
+               rel="noopener noreferrer"
+               hidden>
+              <i class="fa-brands fa-instagram"></i>
+              Follow on Instagram
+            </a>
+
+            <a id="googleLink"
+               class="link-btn"
+               href="#"
+               target="_blank"
+               rel="noopener noreferrer"
+               hidden>
+              <i class="fa-brands fa-google"></i>
+              Write a Google Review
+            </a>
+
+          </div>
+
+          <div class="footer">
+            POWERED BY<br>
+            <strong>VELORA TAP</strong><br>
+            Smart Business Connections
+          </div>
+
+        </div>
+
+        <div id="errorMessage" class="message error" hidden>
+          Business profile could not be loaded.
+          Please try again later.
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // VELORA TAP public configuration
+    const SUPABASE_URL =
+      "https://oxhympbowvttsffrvuwz.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_k2-dpsZmkOdzRy35_BA4lQ_w6rMCk4S";
+
+    const BUSINESS_ID =
+      "5aadf864-e01e-4191-a362-d0a47a6316eb";
+
+    const PROFILE_SLUG = "software";
+
+    const supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    const $ = (id) => document.getElementById(id);
+
+    function showError(message) {
+      $("loading").hidden = true;
+      $("profileContent").hidden = true;
+      $("errorMessage").textContent = message;
+      $("errorMessage").hidden = false;
+    }
+
+    function safeWebsiteUrl(value) {
+      if (!value) return null;
+
+      try {
+        const url = new URL(
+          value.startsWith("http") ? value : "https://" + value
+        );
+
+        if (url.protocol !== "https:" && url.protocol !== "http:") {
+          return null;
+        }
+
+        return url.href;
+      } catch {
+        return null;
+      }
+    }
+
+    function safeInstagramUrl(value) {
+      if (!value) return null;
+
+      try {
+        const url = new URL(value);
+
+        if (
+          url.protocol !== "https:" ||
+          url.hostname !== "www.instagram.com" &&
+          url.hostname !== "instagram.com"
+        ) {
+          return null;
+        }
+
+        return url.href;
+      } catch {
+        return null;
+      }
+    }
+
+    function safeLogoUrl(value) {
+      if (!value) return null;
+
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" ? url.href : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function setLink(id, url, eventType) {
+      const element = $(id);
+
+      if (!url) {
+        element.hidden = true;
+        return;
+      }
+
+      element.href = url;
+      element.hidden = false;
+
+      element.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        // Record the click before opening the destination.
+        try {
+          const { error } = await supabase.rpc(
+            "record_link_click",
+            {
+              p_business_id: BUSINESS_ID,
+              p_event_type: eventType
+            }
+          );
+
+          if (error) {
+            console.error("Click tracking failed:", error.message);
+          }
+        } catch (err) {
+          console.error("Click tracking error:", err);
+        }
+
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
+    }
+
+    async function loadProfile() {
+      try {
+        const { data, error } = await supabase.rpc(
+          "get_public_business_profile",
+          {
+            p_slug: PROFILE_SLUG
+          }
+        );
+
+        if (error) throw error;
+
+        const business = Array.isArray(data) ? data[0] : data;
+
+        if (!business) {
+          throw new Error("Business profile not found.");
+        }
+
+        $("businessName").textContent =
+          business.business_name || "VELORA DIGITAL";
+
+        $("businessDescription").textContent =
+          business.description ||
+          "We design, build and grow digital experiences that drive real results.";
+
+        // Display the business logo safely.
+        const logoUrl = safeLogoUrl(business.logo_url);
+
+        if (logoUrl) {
+          $("businessLogo").src = logoUrl;
+          $("businessLogo").hidden = false;
+          $("logoFallback").hidden = true;
+
+          $("businessLogo").addEventListener("error", () => {
+            $("businessLogo").hidden = true;
+            $("logoFallback").hidden = false;
+          });
+        }
+
+        // WhatsApp number is stored without the country code.
+        const phone = (business.whatsapp_number || "")
+          .replace(/\D/g, "");
+
+        const whatsappNumber = phone
+          ? (phone.startsWith("91") ? phone : "91" + phone)
+          : "";
+
+        const whatsappUrl = whatsappNumber
+          ? "https://wa.me/" + whatsappNumber
+          : null;
+
+        setLink(
+          "whatsappLink",
+          whatsappUrl,
+          "whatsapp_click"
+        );
+
+        setLink(
+          "websiteLink",
+          safeWebsiteUrl(business.website_url),
+          "website_click"
+        );
+
+        setLink(
+          "instagramLink",
+          safeInstagramUrl(business.instagram_url),
+          "instagram_click"
+        );
+
+        // Google Review button remains hidden until a verified
+        // Google review URL is stored in the businesses table.
+        $("googleLink").hidden = true;
+
+        $("loading").hidden = true;
+        $("errorMessage").hidden = true;
+        $("profileContent").hidden = false;
+
+        // Record one profile view after successful profile loading.
+        const { error: trackingError } = await supabase.rpc(
+          "record_profile_view",
+          {
+            p_business_id: BUSINESS_ID
+          }
+        );
+
+        if (trackingError) {
+          console.error(
+            "Profile view tracking failed:",
+            trackingError.message
+          );
+        }
+
+      } catch (error) {
+        console.error("Profile loading failed:", error);
+        showError(
+          "We couldn't load this business profile. Please try again later."
+        );
+      }
+    }
+
+    loadProfile();
+  </script>
+
+</body>
+</html>
