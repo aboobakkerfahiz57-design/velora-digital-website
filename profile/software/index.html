@@ -33,9 +33,7 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -48,16 +46,8 @@
       overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* NAVIGATION */
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
 
     .navbar {
       min-height: 78px;
@@ -108,8 +98,6 @@
       letter-spacing: 1.4px;
     }
 
-    /* MAIN */
-
     .main {
       min-height: calc(100vh - 78px);
       display: grid;
@@ -118,8 +106,6 @@
       perspective: 1200px;
     }
 
-    /* 3D PROFILE CARD */
-
     .profile {
       width: 100%;
       max-width: 510px;
@@ -127,10 +113,8 @@
       padding: 43px 34px;
       text-align: center;
       overflow: hidden;
-
       border: 1px solid rgba(150,166,255,.19);
       border-radius: 28px;
-
       background:
         linear-gradient(
           145deg,
@@ -138,21 +122,16 @@
           rgba(15,20,43,.96) 55%,
           rgba(17,18,42,.98)
         );
-
       box-shadow:
         0 35px 90px rgba(0,0,0,.48),
         0 12px 30px rgba(57,77,190,.12),
         inset 1px 1px 1px rgba(255,255,255,.12),
         inset -1px -1px 1px rgba(0,0,0,.22);
-
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-
       transform-style: preserve-3d;
       animation: cardEnter .9s cubic-bezier(.2,.8,.2,1) both;
     }
-
-    /* No circular glow behind the welcome heading */
 
     .profile-content {
       position: relative;
@@ -171,21 +150,16 @@
       }
     }
 
-    /* BUSINESS LOGO */
-
     .logo-wrap {
       width: 116px;
       height: 116px;
       margin: 0 auto 25px;
       padding: 4px;
       border-radius: 25px;
-
       background: linear-gradient(140deg, #8297ff, #7953d7);
-
       box-shadow:
         0 13px 30px rgba(85,103,235,.25),
         inset 1px 1px 1px rgba(255,255,255,.45);
-
       transform: translateZ(30px);
     }
 
@@ -210,10 +184,8 @@
     }
 
     .logo-fallback[hidden] {
-  display: none !important;
-}
-
-    /* PROFILE CONTENT */
+      display: none !important;
+    }
 
     .eyebrow {
       color: #a7b5ff;
@@ -249,11 +221,9 @@
       gap: 8px;
       margin-top: 21px;
       padding: 9px 15px;
-
       border: 1px solid rgba(100,220,170,.20);
       border-radius: 30px;
       background: rgba(50,180,130,.07);
-
       color: #9ce6c2;
       font-size: 11px;
       font-weight: 700;
@@ -267,8 +237,6 @@
       background: #54d99b;
       box-shadow: 0 0 10px rgba(84,217,155,.65);
     }
-
-    /* DIVIDER */
 
     .divider {
       height: 1px;
@@ -289,8 +257,6 @@
       margin-bottom: 19px;
     }
 
-    /* 3D LINK BUTTONS */
-
     .links {
       display: grid;
       gap: 13px;
@@ -300,42 +266,33 @@
       width: 100%;
       min-height: 57px;
       padding: 13px 18px;
-
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-
       border: 1px solid rgba(255,255,255,.10);
       border-radius: 15px;
-
       background: linear-gradient(
         145deg,
         rgba(255,255,255,.085),
         rgba(255,255,255,.025)
       );
-
       color: #ffffff;
       font-size: 14px;
       font-weight: 700;
-
       box-shadow:
         0 7px 0 rgba(0,0,0,.17),
         0 12px 22px rgba(0,0,0,.17),
         inset 1px 1px 1px rgba(255,255,255,.09);
-
       transition:
         transform .25s ease,
         box-shadow .25s ease,
         border-color .25s ease,
         background .25s ease;
-
       cursor: pointer;
     }
 
-    .link-btn i {
-      font-size: 18px;
-    }
+    .link-btn i { font-size: 18px; }
 
     .link-btn:hover {
       transform: translateY(-4px);
@@ -345,7 +302,6 @@
         rgba(105,124,255,.19),
         rgba(255,255,255,.045)
       );
-
       box-shadow:
         0 10px 0 rgba(0,0,0,.14),
         0 20px 28px rgba(65,83,190,.17),
@@ -375,11 +331,7 @@
         0 20px 32px rgba(87,105,229,.34);
     }
 
-    .link-btn[hidden] {
-      display: none;
-    }
-
-    /* FOOTER */
+    .link-btn[hidden] { display: none; }
 
     .footer {
       margin-top: 32px;
@@ -404,17 +356,13 @@
       letter-spacing: .6px;
     }
 
-    /* LOADING / ERROR */
-
     .message {
       color: var(--muted);
       font-size: 14px;
       line-height: 1.8;
     }
 
-    .error {
-      color: #ffb1b1;
-    }
+    .error { color: #ffb1b1; }
 
     .loading {
       padding: 48px 10px;
@@ -435,8 +383,6 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
-    /* MOBILE */
 
     @media (max-width: 520px) {
       .navbar {
@@ -624,6 +570,13 @@
       "https://g.page/r/CS8P-2hXbLXvEAE/review";
 
     // ==========================================
+    // WHATSAPP PREFILLED MESSAGE
+    // ==========================================
+
+    const WHATSAPP_MESSAGE =
+      "Hi! I found your business through VELORA TAP. I am interested in your services. Could you please share more details?";
+
+    // ==========================================
     // SUPABASE CLIENT
     // ==========================================
 
@@ -780,7 +733,7 @@
           });
         }
 
-        // WHATSAPP
+        // WHATSAPP WITH PREFILLED MESSAGE
 
         const phone = (business.whatsapp_number || "")
           .replace(/\D/g, "");
@@ -790,7 +743,8 @@
           : "";
 
         const whatsappUrl = whatsappNumber
-          ? "https://wa.me/" + whatsappNumber
+          ? "https://wa.me/" + whatsappNumber +
+            "?text=" + encodeURIComponent(WHATSAPP_MESSAGE)
           : null;
 
         setTrackedLink(
